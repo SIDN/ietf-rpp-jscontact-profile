@@ -38,7 +38,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jscontact-profiles] for the [RESTful Provisioning Protocol](https://datatracker.ietf.org/wg/rpp/about/) (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9553] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jscontact-profiles] for the [RESTful Provisioning Protocol](https://datatracker.ietf.org/wg/rpp/about/) (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -74,7 +74,7 @@ implementation for both RPP clients and RPP servers.
 The JSContact profile for RPP is compliant with the rules described in
 [@!I-D.ietf-calext-jscontact-profiles]. The profile properties are formally
 listed in (#profile-properties). All types mentioned in this section refer to
-the JSContact specification [@!RFC9553].
+the JSContact specification [@!RFC9982].
 
 ### Kind {#kind}
 
@@ -129,7 +129,7 @@ When the "kind" member is present, its value MUST be "contact".
 
 Since most JSContact collections are represented as maps, map keys must be
 defined. A JSContact map key MUST comply with the Id type definition in
-[@!RFC9553]. To aid interoperability, RPP implementations SHOULD use the
+[@!RFC9982]. To aid interoperability, RPP implementations SHOULD use the
 following predefined keys:
 
 - "org" in the "organizations" map for a single preferred organization.
@@ -164,7 +164,7 @@ the postal address:
 ~~~ json
 {
   "@type": "Card",
-  "version": "1.0",
+  "version": "2.0",
   "language": "en",
   "name": {
     "full": "Joe User"
