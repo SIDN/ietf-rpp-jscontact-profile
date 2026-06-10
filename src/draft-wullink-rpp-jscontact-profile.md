@@ -76,6 +76,10 @@ The JSContact profile for RPP is compliant with the rules described in
 listed in (#profile-properties). All types mentioned in this section refer to
 the JSContact specification [@!RFC9982].
 
+### Version {#version}
+
+The Card "version" member value MUST be "2.0".
+
 ### Kind {#kind}
 
 The Card "kind" member value MUST be "individual" (default) or "org" to
@@ -106,6 +110,8 @@ The Address type MUST include at least one of the "full", "components", or
 When present, each AddressComponent MUST include only the "kind" and "value"
 members. The "kind" member value MUST be "name", "locality", "region",
 "postcode", or "country".
+
+When both an internationalised (`int`) and a localised (`loc`) version of postal address data exist (EPP Compatibility Profile), the internationalised version MUST be represented as the main Card properties, and the localised version MUST be placed in the `localizations` map keyed by an appropriate BCP 47 language tag.
 
 ### Emails {#emails}
 
