@@ -46,6 +46,8 @@ This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jsc
 
 TODO: write introduction, motivation, scope, etc.
 
+A> PK> I think it would be good to define a relation to draft-ietf-regext-rdap-jscontact. In short RPP JSContact will be compatible with RDAP JScontact, but the opposite won't be true in all cases, due to the fact that provisioning protocoll shall limit the number of options the same data can be provisioned.
+
 # Terminology
 
 In this document the following terminology is used.
