@@ -46,6 +46,8 @@ This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jsc
 
 TODO: write introduction, motivation, scope, etc.
 
+A> PK> I think it would be good to define a relation to draft-ietf-regext-rdap-jscontact. In short RPP JSContact will be compatible with RDAP JScontact, but the opposite won't be true in all cases, due to the fact that provisioning protocoll shall limit the number of options the same data can be provisioned.
+
 # Terminology
 
 In this document the following terminology is used.
@@ -98,6 +100,8 @@ The Card "name" member MUST include the "full" member and MAY include the
 When present, each NameComponent MUST include only the "kind" and "value"
 members. The "kind" member value MUST be "title", "given" or "surname".
 
+A> PK> I think we should remove MAY for "components". In EPP there is only name and any optionality makes implementations difficult.
+
 ### Organizations {#organizations}
 
 The Organization type MUST include only the "org" member.
@@ -107,9 +111,13 @@ The Organization type MUST include only the "org" member.
 The Address type MUST include at least one of the "full", "components", or
 "countryCode" members.
 
+A> PK> also here. EPP has address broken down. Don't use full and only use components.
+
 When present, each AddressComponent MUST include only the "kind" and "value"
 members. The "kind" member value MUST be "name", "locality", "region",
 "postcode", or "country".
+
+A> PK> here do we need "country" if we have "countryCode" above?
 
 When both an internationalised (`int`) and a localised (`loc`) version of postal address data exist (EPP Compatibility Profile), the internationalised version MUST be represented as the main Card properties, and the localised version MUST be placed in the `localizations` map keyed by an appropriate BCP 47 language tag.
 
@@ -129,6 +137,7 @@ a voice number.
 The Link type MUST include the "uri" member and MAY include the "kind" member.
 When the "kind" member is present, its value MUST be "contact".
 
+A> PK> why do we need uri links for contacts?
 <!--TODO: allow other link kinds such as company-website? -->
 
 ### Map Keys {#map-keys}
@@ -141,8 +150,11 @@ following predefined keys:
 - "org" in the "organizations" map for a single preferred organization.
 - "addr" in the "addresses" map for a single preferred postal address.
 - "email" in the "emails" map for the preferred email address.
+A> PK> We need to cover for multiple E-mails. I think RDAP profile has some definition
 - "voice" in the "phones" map for the preferred voice number.
+A> PK> We need to cover for multiple voice numbers. I think RDAP profile has some definition
 - "fax" in the "phones" map for the preferred fax number.
+A> PK> We need to cover for multiple fax numbers. I think RDAP profile has some definition
 - "url" in the "links" map for a preferred contact URL; the "kind" member of
   the Link object MUST NOT be set.
 - "contact-uri" in the "links" map for a contact URI; the "kind" member of
@@ -159,10 +171,14 @@ the predefined map key, while the localized version MUST be placed in the
 A RPP request MUST NOT include a "localizations" member, as RPP clients are not expected to provide localized contact information. However,
 A RPP response MAY include a "localizations" member to provide localized versions of the contact information.
 
+A> PK> create/update requests must be able to include localisations, otherwise how to provision them?
+
 If present, localized variants of name, organization, postal address, and
 email MUST be added to the "localizations" map. RPP implementations MUST
 expand all localizations, meaning a nested PatchObject key of the form
 "{key1}/{key2}/.../{keyN}" MUST NOT be used.
+
+A> PK> For EPP compatibility at most one localisation can be present
 
 The following is an elided example of a Card including a localized version of
 the postal address:
