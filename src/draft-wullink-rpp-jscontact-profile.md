@@ -38,7 +38,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jscontact-profiles] for the [RESTful Provisioning Protocol](https://datatracker.ietf.org/wg/rpp/about/) (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines a JSContact usage profile, conforming to the rules described in [@!I-D.ietf-calext-jscontact-profiles], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -70,13 +70,13 @@ context and are therefore not present in RDAP responses.
 
 # Terminology
 
-In this document the following terminology is used.
+In this document, the following terminology is used.
 
 RESTful Provisioning Protocol or RPP - The protocol described in this document.
 
 URL - A Uniform Resource Locator as defined in [@!RFC3986].
 
-RPP client - An HTTP user agent performing an RPP request
+RPP client - An HTTP user agent performing an RPP request.
 
 RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.
 
@@ -135,7 +135,7 @@ The AddressComponent MUST include only the "kind" and "value" members. The "kind
 
 <!-- do we need "countryCode" if AddressComponent contains "country"? see issue #3 -->
 
-When both an internationalised and a localised version of an address are used, the localised version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
+When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
 
 ### Emails {#emails}
 
@@ -288,7 +288,7 @@ TODO
 
 ## Version 00
 
-- Created initial document and added boilerplate sections.
+- Created initial document.
 
 {backmatter}
 
