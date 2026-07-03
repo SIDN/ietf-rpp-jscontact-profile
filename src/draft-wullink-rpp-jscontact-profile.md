@@ -66,7 +66,9 @@ permitted by the RDAP profile are also permitted in RPP.
 
 The converse does not hold. RPP supports additional JSContact constructs
 required for provisioning that have no meaningful equivalent in a read-only
-context and are therefore not present in RDAP responses.
+The RDAP JSContact profile [@!I-D.ietf-regext-rdap-jscontact] defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.
+
+The converse does not hold. RDAP supports additional JSContact constructs that are useful in the read-only context of RDAP responses but that may hinder interoperability. These constructs are not present in RPP requests and responses.
 
 # Terminology
 
