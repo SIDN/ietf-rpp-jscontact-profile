@@ -114,13 +114,7 @@ The Card "language" member SHOULD be set when localizations are specified
 
 ### Name {#name}
 
-The Card "name" member MUST include the "full" member and MAY include the
-"components" member.
-
-When present, each NameComponent MUST include only the "kind" and "value"
-members. The "kind" member value MUST be "title", "given" or "surname".
-
-<!--Only use "full" member for name? See issue #2 -->
+The Card "name" member MUST include only the "full" member and MUST NOT include the "components" member.
 
 ### Organizations {#organizations}
 
@@ -236,9 +230,6 @@ Profile registry as described in (#jscontact-profile-registry) are:
 | kind        | Card             |             | individual, org                          |
 | name        | Card             |             |                                          |
 | full        | Name             | mandatory   |                                          |
-| components  | Name             |             |                                          |
-| kind        | NameComponent    |             | title, given, surname                    |
-| value       | NameComponent    |             |                                          |
 | organizations | Card           |             |                                          |
 | name        | Organization     |             |                                          |
 | addresses   | Card             |             |                                          |
@@ -283,6 +274,7 @@ TODO
 
 ## Version 00
 
+- Make "full" member mandatory in "name" object, do not allow "components" (Issue #2)
 - Do not use "country" in AddressComponent, only use "countryCode" in Address. (issue #3)
 - Created initial document and added boilerplate sections.
 
