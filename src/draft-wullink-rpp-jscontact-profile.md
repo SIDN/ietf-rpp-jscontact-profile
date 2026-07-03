@@ -114,13 +114,7 @@ The Card "language" member SHOULD be set when localizations are specified
 
 ### Name {#name}
 
-The Card "name" member MUST include the "full" member and MAY include the
-"components" member.
-
-When present, each NameComponent MUST include only the "kind" and "value"
-members. The "kind" member value MUST be "title", "given" or "surname".
-
-<!--Only use "full" member for name? See issue #2 -->
+The Card "name" member MUST include only the "full" member and MUST NOT include the "components" member.
 
 ### Organizations {#organizations}
 
@@ -130,10 +124,7 @@ The Organization type MUST include only the "org" member.
 
 The Address type MUST only use the "components" member.
 
-The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region",
-"postcode", or "country".
-
-<!-- do we need "countryCode" if AddressComponent contains "country"? see issue #3 -->
+The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
 
 When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
 
@@ -201,8 +192,7 @@ The following example of a Card includes a localized version of the postal addre
         { "kind": "name",     "value": "Main Street 1" },
         { "kind": "locality", "value": "Ludwigshafen am Rhein" },
         { "kind": "region",   "value": "Rhineland-Palatinate" },
-        { "kind": "postcode", "value": "67067" },
-        { "kind": "country",  "value": "Germany" }
+        { "kind": "postcode", "value": "67067" }
       ],
       "countryCode": "DE"
     }
@@ -215,8 +205,7 @@ The following example of a Card includes a localized version of the postal addre
             { "kind": "name",     "value": "Hauptstraße 1" },
             { "kind": "locality", "value": "Ludwigshafen am Rhein" },
             { "kind": "region",   "value": "Rheinland-Pfalz" },
-            { "kind": "postcode", "value": "67067" },
-            { "kind": "country",  "value": "Deutschland" }
+            { "kind": "postcode", "value": "67067" }
           ],
           "countryCode": "DE"
         }
@@ -241,16 +230,13 @@ Profile registry as described in (#jscontact-profile-registry) are:
 | kind        | Card             |             | individual, org                          |
 | name        | Card             |             |                                          |
 | full        | Name             | mandatory   |                                          |
-| components  | Name             |             |                                          |
-| kind        | NameComponent    |             | title, given, surname                    |
-| value       | NameComponent    |             |                                          |
 | organizations | Card           |             |                                          |
 | name        | Organization     |             |                                          |
 | addresses   | Card             |             |                                          |
 | full        | Address          |             |                                          |
 | countryCode | Address          |             |                                          |
 | components  | Address          |             |                                          |
-| kind        | AddressComponent |             | name, locality, region, postcode, country|
+| kind        | AddressComponent |             | name, locality, region, postcode         |
 | value       | AddressComponent |             |                                          |
 | emails      | Card             |             |                                          |
 | address     | EmailAddress     |             |                                          |
@@ -289,6 +275,8 @@ TODO
 ## Version 00
 
 - Created initial document.
+- Make "full" member mandatory in "name" object, do not allow "components" (Issue #2)
+- Do not use "country" in AddressComponent, only use "countryCode" in Address. (issue #3)
 
 {backmatter}
 
