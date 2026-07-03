@@ -270,14 +270,6 @@ TODO
 
 TODO
 
-# Change History
-
-## Version 00
-
-- Created initial document.
-- Make "full" member mandatory in "name" object, do not allow "components" (Issue #2)
-- Do not use "country" in AddressComponent, only use "countryCode" in Address. (issue #3)
-
 {backmatter}
 
 {numbered="false"}
