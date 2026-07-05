@@ -38,7 +38,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jscontact-profiles] for the [RESTful Provisioning Protocol](https://datatracker.ietf.org/wg/rpp/about/) (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines a JSContact usage profile, conforming to the rules described in [@!I-D.ietf-calext-jscontact-profiles], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -66,17 +66,19 @@ permitted by the RDAP profile are also permitted in RPP.
 
 The converse does not hold. RPP supports additional JSContact constructs
 required for provisioning that have no meaningful equivalent in a read-only
-context and are therefore not present in RDAP responses.
+The RDAP JSContact profile [@!I-D.ietf-regext-rdap-jscontact] defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.
+
+The converse does not hold. RDAP supports additional JSContact constructs that are useful in the read-only context of RDAP responses but that may hinder interoperability. These constructs are not present in RPP requests and responses.
 
 # Terminology
 
-In this document the following terminology is used.
+In this document, the following terminology is used.
 
 RESTful Provisioning Protocol or RPP - The protocol described in this document.
 
 URL - A Uniform Resource Locator as defined in [@!RFC3986].
 
-RPP client - An HTTP user agent performing an RPP request
+RPP client - An HTTP user agent performing an RPP request.
 
 RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.
 
@@ -126,7 +128,7 @@ The Address type MUST only use the "components" member.
 
 The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
 
-When both an internationalised and a localised version of an address are used, the localised version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
+When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
 
 ### Emails {#emails}
 
@@ -269,14 +271,6 @@ TODO
 # Security Considerations
 
 TODO
-
-# Change History
-
-## Version 00
-
-- Make "full" member mandatory in "name" object, do not allow "components" (Issue #2)
-- Do not use "country" in AddressComponent, only use "countryCode" in Address. (issue #3)
-- Created initial document and added boilerplate sections.
 
 {backmatter}
 
