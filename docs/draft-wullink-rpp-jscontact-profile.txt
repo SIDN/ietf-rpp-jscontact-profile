@@ -5,8 +5,8 @@
 Network Working Group                                         M. Wullink
 Internet-Draft                                                 SIDN Labs
 Intended status: Standards Track                              P. Kowalik
-Expires: 1 November 2026                                           DENIC
-                                                           30 April 2026
+Expires: 6 January 2027                                            DENIC
+                                                             5 July 2026
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
@@ -14,13 +14,13 @@ Expires: 1 November 2026                                           DENIC
 
 Abstract
 
-   This document defines the JSContact Profile as defined in
-   [I-D.ietf-calext-jscontact-profiles] for the RESTful Provisioning
-   Protocol (https://datatracker.ietf.org/wg/rpp/about/) (RPP).  The
-   JSContact Profile for RPP specifies how the JSContact format defined
-   in [RFC9553] can be used as a standardized representation of contact
-   information within RPP operations, enabling interoperability and
-   consistency across RPP implementations that manage contact data.
+   This document defines a JSContact usage profile, conforming to the
+   rules described in [I-D.ietf-calext-jscontact-profiles], for the
+   RESTful Provisioning Protocol (RPP).  The JSContact Profile for RPP
+   specifies how the JSContact format defined in [RFC9982] can be used
+   as a standardized representation of contact information within RPP
+   operations, enabling interoperability and consistency across RPP
+   implementations that manage contact data.
 
 Status of This Memo
 
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 November 2026.
+   This Internet-Draft will expire on 6 January 2027.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 1]
+Wullink & Kowalik        Expires 6 January 2027                 [Page 1]
 
-Internet-Draft          JSContact Profile for RPP             April 2026
+Internet-Draft          JSContact Profile for RPP              July 2026
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -70,56 +70,105 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   3.  Conventions Used in This Document . . . . . . . . . . . . . .   3
-   4.  Using JSContact in RPP  . . . . . . . . . . . . . . . . . . .   3
-     4.1.  JSContact Profile for RPP . . . . . . . . . . . . . . . .   3
-       4.1.1.  Kind  . . . . . . . . . . . . . . . . . . . . . . . .   3
-       4.1.2.  Language  . . . . . . . . . . . . . . . . . . . . . .   3
-       4.1.3.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   3
-       4.1.4.  Organizations . . . . . . . . . . . . . . . . . . . .   4
-       4.1.5.  Addresses . . . . . . . . . . . . . . . . . . . . . .   4
-       4.1.6.  Emails  . . . . . . . . . . . . . . . . . . . . . . .   4
-       4.1.7.  Phones  . . . . . . . . . . . . . . . . . . . . . . .   4
-       4.1.8.  Links . . . . . . . . . . . . . . . . . . . . . . . .   4
-       4.1.9.  Map Keys  . . . . . . . . . . . . . . . . . . . . . .   4
-       4.1.10. Localizations . . . . . . . . . . . . . . . . . . . .   5
-       4.1.11. Profile Properties  . . . . . . . . . . . . . . . . .   6
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-     5.1.  JSContact Profile Registry  . . . . . . . . . . . . . . .   8
-   6.  Internationalization Considerations . . . . . . . . . . . . .   8
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
-   8.  Change History  . . . . . . . . . . . . . . . . . . . . . . .   8
-     8.1.  Version 00  . . . . . . . . . . . . . . . . . . . . . . .   8
-   9.  Normative References  . . . . . . . . . . . . . . . . . . . .   8
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .   9
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
+     1.1.  Relationship to the RDAP JSContact Profile  . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Conventions Used in This Document . . . . . . . . . . . . . .   4
+   4.  Using JSContact in RPP  . . . . . . . . . . . . . . . . . . .   4
+     4.1.  JSContact Profile for RPP . . . . . . . . . . . . . . . .   4
+       4.1.1.  Version . . . . . . . . . . . . . . . . . . . . . . .   4
+       4.1.2.  Kind  . . . . . . . . . . . . . . . . . . . . . . . .   4
+       4.1.3.  Language  . . . . . . . . . . . . . . . . . . . . . .   4
+       4.1.4.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   4
+       4.1.5.  Organizations . . . . . . . . . . . . . . . . . . . .   4
+       4.1.6.  Addresses . . . . . . . . . . . . . . . . . . . . . .   5
+       4.1.7.  Emails  . . . . . . . . . . . . . . . . . . . . . . .   5
+       4.1.8.  Phones  . . . . . . . . . . . . . . . . . . . . . . .   5
+       4.1.9.  Links . . . . . . . . . . . . . . . . . . . . . . . .   5
+       4.1.10. Map Keys  . . . . . . . . . . . . . . . . . . . . . .   5
+       4.1.11. Localizations . . . . . . . . . . . . . . . . . . . .   6
+       4.1.12. Profile Properties  . . . . . . . . . . . . . . . . .   7
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+     5.1.  JSContact Profile Registry  . . . . . . . . . . . . . . .   9
+   6.  Internationalization Considerations . . . . . . . . . . . . .   9
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   9
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
 
-   TODO: write introduction, motivation, scope, etc.
+   JSContact [RFC9982] is a flexible, JSON-based format for representing
+   contact information.  Its flexibility allows the same data to be
+   expressed in multiple valid ways, which can hinder interoperability
+   in a provisioning context where data must be stored and interpreted
+   consistently.
+
+
+
+
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 2]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
+
+   This document defines a JSContact usage profile for the RESTful
+   Provisioning Protocol (RPP), restricting the set of JSContact
+   constructs that RPP clients and servers are required to support when
+   provisioning contact information.
+
+1.1.  Relationship to the RDAP JSContact Profile
+
+   The Registration Data Access Protocol (RDAP) [RFC9083] provides read-
+   only access to registration data managed by RPP.  Both protocols use
+   JSContact for contact representation, but with profiles suited to
+   their respective roles.
+
+   The RDAP JSContact profile [I-D.ietf-regext-rdap-jscontact] defines
+   the constructs used when serving registration data to read-only
+   consumers.  The RPP profile defined in this document is a superset:
+   all JSContact constructs permitted by the RDAP profile are also
+   permitted in RPP.
+
+   The converse does not hold.  RPP supports additional JSContact
+   constructs required for provisioning that have no meaningful
+   equivalent in a read-only The RDAP JSContact profile
+   [I-D.ietf-regext-rdap-jscontact] defines the constructs used when
+   serving registration data to read-only consumers.  The RPP profile,
+   defined in this document, is a subset of these constructs.  All
+   JSContact constructs permitted by the RPP profile can be used for
+   RDAP.
+
+   The converse does not hold.  RDAP supports additional JSContact
+   constructs that are useful in the read-only context of RDAP responses
+   but that may hinder interoperability.  These constructs are not
+   present in RPP requests and responses.
 
 2.  Terminology
 
-   In this document the following terminology is used.
+   In this document, the following terminology is used.
 
    RESTful Provisioning Protocol or RPP - The protocol described in this
    document.
 
-
-
-
-Wullink & Kowalik        Expires 1 November 2026                [Page 2]
-
-Internet-Draft          JSContact Profile for RPP             April 2026
-
-
    URL - A Uniform Resource Locator as defined in [RFC3986].
 
-   RPP client - An HTTP user agent performing an RPP request
+   RPP client - An HTTP user agent performing an RPP request.
 
    RPP server - An HTTP server responsible for processing requests and
    returning results in any supported media type.
+
+
+
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 3]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
 
 3.  Conventions Used in This Document
 
@@ -139,73 +188,78 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
    The JSContact profile for RPP is compliant with the rules described
    in [I-D.ietf-calext-jscontact-profiles].  The profile properties are
-   formally listed in Section 4.1.11.  All types mentioned in this
-   section refer to the JSContact specification [RFC9553].
+   formally listed in Section 4.1.12.  All types mentioned in this
+   section refer to the JSContact specification [RFC9982].
 
-4.1.1.  Kind
+4.1.1.  Version
+
+   The Card "version" member value MUST be "2.0".
+
+4.1.2.  Kind
 
    The Card "kind" member value MUST be "individual" (default) or "org"
    to represent an individual or an organization, respectively.
 
-4.1.2.  Language
+4.1.3.  Language
 
    The Card "language" member SHOULD be set when localizations are
    specified (i.e., when the "localizations" member is present and non-
    null).
 
-4.1.3.  Name
+4.1.4.  Name
 
-   The Card "name" member MUST include the "full" member and MAY include
-   the "components" member.
+   The Card "name" member MUST include only the "full" member and MUST
+   NOT include the "components" member.
 
-   When present, each NameComponent MUST include only the "kind" and
-   "value" members.  The "kind" member value MUST be "title", "given" or
-   "surname".
-
-
-
-
-Wullink & Kowalik        Expires 1 November 2026                [Page 3]
-
-Internet-Draft          JSContact Profile for RPP             April 2026
-
-
-4.1.4.  Organizations
+4.1.5.  Organizations
 
    The Organization type MUST include only the "org" member.
 
-4.1.5.  Addresses
 
-   The Address type MUST include at least one of the "full",
-   "components", or "countryCode" members.
 
-   When present, each AddressComponent MUST include only the "kind" and
-   "value" members.  The "kind" member value MUST be "name", "locality",
-   "region", "postcode", or "country".
 
-4.1.6.  Emails
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 4]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
+
+4.1.6.  Addresses
+
+   The Address type MUST only use the "components" member.
+
+   The AddressComponent MUST include only the "kind" and "value"
+   members.  The "kind" member value MUST only use "name", "locality",
+   "region", or "postcode".
+
+   When both an internationalized and a localized version of an address
+   are used, the localized version MUST be placed in the localizations
+   map keyed by an appropriate [BCP47] language tag.
+
+4.1.7.  Emails
 
    The EmailAddress type MUST include only the "address" member.
 
-4.1.7.  Phones
+4.1.8.  Phones
 
    The Phone type MUST include the "number" member and MAY include the
    "features" member.  When the "features" member is present, its values
    MUST be "voice" or "fax".  When the "features" member is absent, the
    phone number is assumed to be a voice number.
 
-4.1.8.  Links
+4.1.9.  Links
 
    The Link type MUST include the "uri" member and MAY include the
    "kind" member.  When the "kind" member is present, its value MUST be
    "contact".
 
-4.1.9.  Map Keys
+4.1.10.  Map Keys
 
-   Since most JSContact collections are represented as maps, map keys
-   must be defined.  A JSContact map key MUST comply with the Id type
-   definition in [RFC9553].  To aid interoperability, RPP
-   implementations SHOULD use the following predefined keys:
+   A JSContact map key MUST comply with the Id type definition in
+   [RFC9553].  RPP implementations MUST use the following predefined
+   keys:
 
    -  "org" in the "organizations" map for a single preferred
       organization.
@@ -221,23 +275,20 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 4]
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 5]
 
-Internet-Draft          JSContact Profile for RPP             April 2026
+Internet-Draft          JSContact Profile for RPP              July 2026
 
 
    When internationalized and localized versions of an organization,
    postal address, or email exist, the internationalized version MUST be
    included under the predefined map key, while the localized version
    MUST be placed in the "localizations" map as described in
-   Section 4.1.10.
+   Section 4.1.11.
 
-4.1.10.  Localizations
-
-   A RPP request MUST NOT include a "localizations" member, as RPP
-   clients are not expected to provide localized contact information.
-   However, A RPP response MAY include a "localizations" member to
-   provide localized versions of the contact information.
+4.1.11.  Localizations
 
    If present, localized variants of name, organization, postal address,
    and email MUST be added to the "localizations" map.  RPP
@@ -245,8 +296,13 @@ Internet-Draft          JSContact Profile for RPP             April 2026
    PatchObject key of the form "{key1}/{key2}/.../{keyN}" MUST NOT be
    used.
 
-   The following is an elided example of a Card including a localized
-   version of the postal address:
+   The number of provided localizations MUST NOT exceed the number of
+   languages supported by the RPP server.  The language of each
+   localization MUST be indicated by a [BCP47] language tag as the key
+   in the "localizations" map.
+
+   The following example of a Card includes a localized version of the
+   postal address:
 
 
 
@@ -277,14 +333,14 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 5]
+Wullink & Kowalik        Expires 6 January 2027                 [Page 6]
 
-Internet-Draft          JSContact Profile for RPP             April 2026
+Internet-Draft          JSContact Profile for RPP              July 2026
 
 
    {
      "@type": "Card",
-     "version": "1.0",
+     "version": "2.0",
      "language": "en",
      "name": {
        "full": "Joe User"
@@ -298,8 +354,7 @@ Internet-Draft          JSContact Profile for RPP             April 2026
            { "kind": "name",     "value": "Main Street 1" },
            { "kind": "locality", "value": "Ludwigshafen am Rhein" },
            { "kind": "region",   "value": "Rhineland-Palatinate" },
-           { "kind": "postcode", "value": "67067" },
-           { "kind": "country",  "value": "Germany" }
+           { "kind": "postcode", "value": "67067" }
          ],
          "countryCode": "DE"
        }
@@ -312,8 +367,7 @@ Internet-Draft          JSContact Profile for RPP             April 2026
                { "kind": "name",     "value": "Hauptstraße 1" },
                { "kind": "locality", "value": "Ludwigshafen am Rhein" },
                { "kind": "region",   "value": "Rheinland-Pfalz" },
-               { "kind": "postcode", "value": "67067" },
-               { "kind": "country",  "value": "Deutschland" }
+               { "kind": "postcode", "value": "67067" }
              ],
              "countryCode": "DE"
            }
@@ -324,7 +378,7 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
           Figure 1: Example of handling localizations in JSContact
 
-4.1.11.  Profile Properties
+4.1.12.  Profile Properties
 
    The properties of the JSContact profile for RPP registered in the
    JSContact Profile registry as described in Section 5.1 are:
@@ -333,76 +387,68 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 6]
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 7]
 
-Internet-Draft          JSContact Profile for RPP             April 2026
+Internet-Draft          JSContact Profile for RPP              July 2026
 
 
-   +===============+==================+============+===================+
-   |               |                  | Attributes | Values            |
-   +===============+==================+============+===================+
-   | language      | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | kind          | Card             |            | individual, org   |
-   +---------------+------------------+------------+-------------------+
-   | name          | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | full          | Name             | mandatory  |                   |
-   +---------------+------------------+------------+-------------------+
-   | components    | Name             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | kind          | NameComponent    |            | title, given,     |
-   |               |                  |            | surname           |
-   +---------------+------------------+------------+-------------------+
-   | value         | NameComponent    |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | organizations | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | name          | Organization     |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | addresses     | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | full          | Address          |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | countryCode   | Address          |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | components    | Address          |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | kind          | AddressComponent |            | name, locality,   |
-   |               |                  |            | region,           |
-   |               |                  |            | postcode,         |
-   |               |                  |            | country           |
-   +---------------+------------------+------------+-------------------+
-   | value         | AddressComponent |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | emails        | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | address       | EmailAddress     |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | phones        | Card             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | features      | Phone            |            | voice, fax        |
-   +---------------+------------------+------------+-------------------+
-   | number        | Phone            |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | links         | Card             |            |                   |
+   +===============+==================+============+==================+
+   |               |                  | Attributes | Values           |
+   +===============+==================+============+==================+
+   | language      | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | kind          | Card             |            | individual, org  |
+   +---------------+------------------+------------+------------------+
+   | name          | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | full          | Name             | mandatory  |                  |
+   +---------------+------------------+------------+------------------+
+   | organizations | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | name          | Organization     |            |                  |
+   +---------------+------------------+------------+------------------+
+   | addresses     | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | full          | Address          |            |                  |
+   +---------------+------------------+------------+------------------+
+   | countryCode   | Address          |            |                  |
+   +---------------+------------------+------------+------------------+
+   | components    | Address          |            |                  |
+   +---------------+------------------+------------+------------------+
+   | kind          | AddressComponent |            | name, locality,  |
+   |               |                  |            | region, postcode |
+   +---------------+------------------+------------+------------------+
+   | value         | AddressComponent |            |                  |
+   +---------------+------------------+------------+------------------+
+   | emails        | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | address       | EmailAddress     |            |                  |
+   +---------------+------------------+------------+------------------+
+   | phones        | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | features      | Phone            |            | voice, fax       |
+   +---------------+------------------+------------+------------------+
+   | number        | Phone            |            |                  |
+   +---------------+------------------+------------+------------------+
+   | links         | Card             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | kind          | Link             |            | contact          |
+   +---------------+------------------+------------+------------------+
+   | uri           | Link             |            |                  |
+   +---------------+------------------+------------+------------------+
+   | localizations | Card             |            | yes              |
+   +---------------+------------------+------------+------------------+
+
+                                 Table 1
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 7]
+Wullink & Kowalik        Expires 6 January 2027                 [Page 8]
 
-Internet-Draft          JSContact Profile for RPP             April 2026
+Internet-Draft          JSContact Profile for RPP              July 2026
 
-
-   +---------------+------------------+------------+-------------------+
-   | kind          | Link             |            | contact           |
-   +---------------+------------------+------------+-------------------+
-   | uri           | Link             |            |                   |
-   +---------------+------------------+------------+-------------------+
-   | localizations | Card             |            | yes               |
-   +---------------+------------------+------------+-------------------+
-
-                                  Table 1
 
    Client validation MUST return an error if any JSContact properties
    other than those listed above are present.
@@ -414,7 +460,7 @@ Internet-Draft          JSContact Profile for RPP             April 2026
    IANA is requested to register the following entry in the "JSContact
    Profile" registry [I-D.ietf-calext-jscontact-profiles]:
 
-   Name: rpp Profile Version: 1.0 Reference: TODO
+   Name: rpp Profile Version: 1.0 Reference: This document
 
    TODO
 
@@ -426,13 +472,19 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
    TODO
 
-8.  Change History
+8.  Normative References
 
-8.1.  Version 00
+   [BCP47]    Best Current Practice 47,
+              <https://www.rfc-editor.org/info/bcp47>.
+              At the time of writing, this BCP comprises the following:
 
-   -  Created initial document and added boilerplate sections.
+              Phillips, A., Ed. and M. Davis, Ed., "Matching of Language
+              Tags", BCP 47, RFC 4647, DOI 10.17487/RFC4647, September
+              2006, <https://www.rfc-editor.org/info/rfc4647>.
 
-9.  Normative References
+              Phillips, A., Ed. and M. Davis, Ed., "Tags for Identifying
+              Languages", BCP 47, RFC 5646, DOI 10.17487/RFC5646,
+              September 2009, <https://www.rfc-editor.org/info/rfc5646>.
 
    [I-D.ietf-calext-jscontact-profiles]
               Stepanek, R. and M. Loffredo, "Protocol-Specific Profiles
@@ -445,10 +497,22 @@ Internet-Draft          JSContact Profile for RPP             April 2026
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 8]
-
-Internet-Draft          JSContact Profile for RPP             April 2026
 
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                 [Page 9]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
+
+   [I-D.ietf-regext-rdap-jscontact]
+              Loffredo, M. and G. Brown, "Using JSContact in
+              Registration Data Access Protocol (RDAP) JSON Responses",
+              Work in Progress, Internet-Draft, draft-ietf-regext-rdap-
+              jscontact-25, 30 April 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-regext-
+              rdap-jscontact-25>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -460,10 +524,20 @@ Internet-Draft          JSContact Profile for RPP             April 2026
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://www.rfc-editor.org/info/rfc3986>.
 
+   [RFC9083]  Hollenbeck, S. and A. Newton, "JSON Responses for the
+              Registration Data Access Protocol (RDAP)", STD 95,
+              RFC 9083, DOI 10.17487/RFC9083, June 2021,
+              <https://www.rfc-editor.org/info/rfc9083>.
+
    [RFC9553]  Stepanek, R. and M. Loffredo, "JSContact: A JSON
               Representation of Contact Data", RFC 9553,
               DOI 10.17487/RFC9553, May 2024,
               <https://www.rfc-editor.org/info/rfc9553>.
+
+   [RFC9982]  Stepanek, R., "JSContact Version 2.0: A JSON
+              Representation of Contact Data", RFC 9982,
+              DOI 10.17487/RFC9982, May 2026,
+              <https://www.rfc-editor.org/info/rfc9982>.
 
 Acknowledgements
 
@@ -480,6 +554,14 @@ Authors' Addresses
    Pawel Kowalik
    DENIC
    Email: pawel.kowalik@denic.de
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                [Page 10]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
+
    URI:   https://denic.de/
 
 
@@ -501,4 +583,34 @@ Authors' Addresses
 
 
 
-Wullink & Kowalik        Expires 1 November 2026                [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Wullink & Kowalik        Expires 6 January 2027                [Page 11]

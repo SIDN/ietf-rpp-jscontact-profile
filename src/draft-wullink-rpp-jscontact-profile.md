@@ -6,7 +6,7 @@ workgroup = "Network Working Group"
 submissiontype = "IETF"
 keyword = [""]
 TocDepth = 4
-date = 2026-04-30
+date = 2026-07-05
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -38,7 +38,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines the JSContact Profile as defined in [@!I-D.ietf-calext-jscontact-profiles] for the [RESTful Provisioning Protocol](https://datatracker.ietf.org/wg/rpp/about/) (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines a JSContact usage profile, conforming to the rules described in [@!I-D.ietf-calext-jscontact-profiles], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -66,17 +66,19 @@ permitted by the RDAP profile are also permitted in RPP.
 
 The converse does not hold. RPP supports additional JSContact constructs
 required for provisioning that have no meaningful equivalent in a read-only
-context and are therefore not present in RDAP responses.
+The RDAP JSContact profile [@!I-D.ietf-regext-rdap-jscontact] defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.
+
+The converse does not hold. RDAP supports additional JSContact constructs that are useful in the read-only context of RDAP responses but that may hinder interoperability. These constructs are not present in RPP requests and responses.
 
 # Terminology
 
-In this document the following terminology is used.
+In this document, the following terminology is used.
 
 RESTful Provisioning Protocol or RPP - The protocol described in this document.
 
 URL - A Uniform Resource Locator as defined in [@!RFC3986].
 
-RPP client - An HTTP user agent performing an RPP request
+RPP client - An HTTP user agent performing an RPP request.
 
 RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.
 
@@ -114,13 +116,7 @@ The Card "language" member SHOULD be set when localizations are specified
 
 ### Name {#name}
 
-The Card "name" member MUST include the "full" member and MAY include the
-"components" member.
-
-When present, each NameComponent MUST include only the "kind" and "value"
-members. The "kind" member value MUST be "title", "given" or "surname".
-
-<!--Only use "full" member for name? See issue #2 -->
+The Card "name" member MUST include only the "full" member and MUST NOT include the "components" member.
 
 ### Organizations {#organizations}
 
@@ -130,12 +126,9 @@ The Organization type MUST include only the "org" member.
 
 The Address type MUST only use the "components" member.
 
-The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region",
-"postcode", or "country".
+The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
 
-<!-- do we need "countryCode" if AddressComponent contains "country"? see issue #3 -->
-
-When both an internationalised and a localised version of an address are used, the localised version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
+When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
 
 ### Emails {#emails}
 
@@ -201,8 +194,7 @@ The following example of a Card includes a localized version of the postal addre
         { "kind": "name",     "value": "Main Street 1" },
         { "kind": "locality", "value": "Ludwigshafen am Rhein" },
         { "kind": "region",   "value": "Rhineland-Palatinate" },
-        { "kind": "postcode", "value": "67067" },
-        { "kind": "country",  "value": "Germany" }
+        { "kind": "postcode", "value": "67067" }
       ],
       "countryCode": "DE"
     }
@@ -215,8 +207,7 @@ The following example of a Card includes a localized version of the postal addre
             { "kind": "name",     "value": "Hauptstraße 1" },
             { "kind": "locality", "value": "Ludwigshafen am Rhein" },
             { "kind": "region",   "value": "Rheinland-Pfalz" },
-            { "kind": "postcode", "value": "67067" },
-            { "kind": "country",  "value": "Deutschland" }
+            { "kind": "postcode", "value": "67067" }
           ],
           "countryCode": "DE"
         }
@@ -241,16 +232,13 @@ Profile registry as described in (#jscontact-profile-registry) are:
 | kind        | Card             |             | individual, org                          |
 | name        | Card             |             |                                          |
 | full        | Name             | mandatory   |                                          |
-| components  | Name             |             |                                          |
-| kind        | NameComponent    |             | title, given, surname                    |
-| value       | NameComponent    |             |                                          |
 | organizations | Card           |             |                                          |
 | name        | Organization     |             |                                          |
 | addresses   | Card             |             |                                          |
 | full        | Address          |             |                                          |
 | countryCode | Address          |             |                                          |
 | components  | Address          |             |                                          |
-| kind        | AddressComponent |             | name, locality, region, postcode, country|
+| kind        | AddressComponent |             | name, locality, region, postcode         |
 | value       | AddressComponent |             |                                          |
 | emails      | Card             |             |                                          |
 | address     | EmailAddress     |             |                                          |
@@ -283,12 +271,6 @@ TODO
 # Security Considerations
 
 TODO
-
-# Change History
-
-## Version 00
-
-- Created initial document and added boilerplate sections.
 
 {backmatter}
 
