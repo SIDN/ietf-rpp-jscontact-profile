@@ -10,12 +10,12 @@
 </address></author><author initials="P." surname="Kowalik" fullname="Pawel Kowalik"><organization>DENIC</organization><address><postal><street></street>
 </postal><email>pawel.kowalik@denic.de</email>
 <uri>https://denic.de/</uri>
-</address></author><date year="2026" month="April" day="30"></date>
+</address></author><date year="2026" month="July" day="5"></date>
 <area>Internet</area>
 <workgroup>Network Working Group</workgroup>
 
 <abstract>
-<t>This document defines the JSContact Profile as defined in <xref target="I-D.ietf-calext-jscontact-profiles"></xref> for the <eref target="https://datatracker.ietf.org/wg/rpp/about/">RESTful Provisioning Protocol</eref> (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <xref target="RFC9553"></xref> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
+<t>This document defines a JSContact usage profile, conforming to the rules described in <xref target="I-D.ietf-calext-jscontact-profiles"></xref>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <xref target="RFC9982"></xref> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
 </abstract>
 
 </front>
@@ -23,14 +23,34 @@
 <middle>
 
 <section anchor="introduction"><name>Introduction</name>
-<t>TODO: write introduction, motivation, scope, etc.</t>
+<t>JSContact <xref target="RFC9982"></xref> is a flexible, JSON-based format for representing contact
+information. Its flexibility allows the same data to be expressed in multiple
+valid ways, which can hinder interoperability in a provisioning context where
+data must be stored and interpreted consistently.</t>
+<t>This document defines a JSContact usage profile for the RESTful Provisioning
+Protocol (RPP), restricting the set of JSContact constructs that RPP clients and
+servers are required to support when provisioning contact information.</t>
+
+<section anchor="relationship-to-the-rdap-jscontact-profile"><name>Relationship to the RDAP JSContact Profile</name>
+<t>The Registration Data Access Protocol (RDAP) <xref target="RFC9083"></xref> provides read-only
+access to registration data managed by RPP. Both protocols use JSContact for
+contact representation, but with profiles suited to their respective roles.</t>
+<t>The RDAP JSContact profile <xref target="I-D.ietf-regext-rdap-jscontact"></xref> defines the
+constructs used when serving registration data to read-only consumers. The RPP
+profile defined in this document is a superset: all JSContact constructs
+permitted by the RDAP profile are also permitted in RPP.</t>
+<t>The converse does not hold. RPP supports additional JSContact constructs
+required for provisioning that have no meaningful equivalent in a read-only
+The RDAP JSContact profile <xref target="I-D.ietf-regext-rdap-jscontact"></xref> defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.</t>
+<t>The converse does not hold. RDAP supports additional JSContact constructs that are useful in the read-only context of RDAP responses but that may hinder interoperability. These constructs are not present in RPP requests and responses.</t>
+</section>
 </section>
 
 <section anchor="terminology"><name>Terminology</name>
-<t>In this document the following terminology is used.</t>
+<t>In this document, the following terminology is used.</t>
 <t>RESTful Provisioning Protocol or RPP - The protocol described in this document.</t>
 <t>URL - A Uniform Resource Locator as defined in <xref target="RFC3986"></xref>.</t>
-<t>RPP client - An HTTP user agent performing an RPP request</t>
+<t>RPP client - An HTTP user agent performing an RPP request.</t>
 <t>RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.</t>
 </section>
 
@@ -48,7 +68,11 @@ implementation for both RPP clients and RPP servers.</t>
 <t>The JSContact profile for RPP is compliant with the rules described in
 <xref target="I-D.ietf-calext-jscontact-profiles"></xref>. The profile properties are formally
 listed in <xref target="profile-properties"></xref>. All types mentioned in this section refer to
-the JSContact specification <xref target="RFC9553"></xref>.</t>
+the JSContact specification <xref target="RFC9982"></xref>.</t>
+
+<section anchor="version"><name>Version</name>
+<t>The Card &quot;version&quot; member value MUST be &quot;2.0&quot;.</t>
+</section>
 
 <section anchor="kind"><name>Kind</name>
 <t>The Card &quot;kind&quot; member value MUST be &quot;individual&quot; (default) or &quot;org&quot; to
@@ -61,10 +85,7 @@ represent an individual or an organization, respectively.</t>
 </section>
 
 <section anchor="name"><name>Name</name>
-<t>The Card &quot;name&quot; member MUST include the &quot;full&quot; member and MAY include the
-&quot;components&quot; member.</t>
-<t>When present, each NameComponent MUST include only the &quot;kind&quot; and &quot;value&quot;
-members. The &quot;kind&quot; member value MUST be &quot;title&quot;, &quot;given&quot; or &quot;surname&quot;.</t>
+<t>The Card &quot;name&quot; member MUST include only the &quot;full&quot; member and MUST NOT include the &quot;components&quot; member.</t>
 </section>
 
 <section anchor="organizations"><name>Organizations</name>
@@ -72,11 +93,9 @@ members. The &quot;kind&quot; member value MUST be &quot;title&quot;, &quot;give
 </section>
 
 <section anchor="addresses"><name>Addresses</name>
-<t>The Address type MUST include at least one of the &quot;full&quot;, &quot;components&quot;, or
-&quot;countryCode&quot; members.</t>
-<t>When present, each AddressComponent MUST include only the &quot;kind&quot; and &quot;value&quot;
-members. The &quot;kind&quot; member value MUST be &quot;name&quot;, &quot;locality&quot;, &quot;region&quot;,
-&quot;postcode&quot;, or &quot;country&quot;.</t>
+<t>The Address type MUST only use the &quot;components&quot; member.</t>
+<t>The AddressComponent MUST include only the &quot;kind&quot; and &quot;value&quot; members. The &quot;kind&quot; member value MUST only use &quot;name&quot;, &quot;locality&quot;, &quot;region&quot;, or &quot;postcode&quot;.</t>
+<t>When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <tt>localizations</tt> map keyed by an appropriate <xref target="BCP47"></xref> language tag.</t>
 </section>
 
 <section anchor="emails"><name>Emails</name>
@@ -96,42 +115,36 @@ When the &quot;kind&quot; member is present, its value MUST be &quot;contact&quo
 </section>
 
 <section anchor="map-keys"><name>Map Keys</name>
-<t>Since most JSContact collections are represented as maps, map keys must be
-defined. A JSContact map key MUST comply with the Id type definition in
-<xref target="RFC9553"></xref>. To aid interoperability, RPP implementations SHOULD use the
-following predefined keys:</t>
+<t>A JSContact map key MUST comply with the Id type definition in <xref target="RFC9553"></xref>. RPP implementations MUST use the following predefined keys:</t>
 
 <ul spacing="compact">
 <li>&quot;org&quot; in the &quot;organizations&quot; map for a single preferred organization.</li>
 <li>&quot;addr&quot; in the &quot;addresses&quot; map for a single preferred postal address.</li>
-<li>&quot;email&quot; in the &quot;emails&quot; map for the preferred email address.</li>
-<li>&quot;voice&quot; in the &quot;phones&quot; map for the preferred voice number.</li>
-<li>&quot;fax&quot; in the &quot;phones&quot; map for the preferred fax number.</li>
+<li>&quot;email&quot; in the &quot;emails&quot; map for the preferred email address.
+</li>
+<li>&quot;voice&quot; in the &quot;phones&quot; map for the preferred voice number.
+</li>
+<li>&quot;fax&quot; in the &quot;phones&quot; map for the preferred fax number.
+</li>
 <li>&quot;url&quot; in the &quot;links&quot; map for a preferred contact URL; the &quot;kind&quot; member of
 the Link object MUST NOT be set.</li>
 <li>&quot;contact-uri&quot; in the &quot;links&quot; map for a contact URI; the &quot;kind&quot; member of
 the Link object MUST be set to &quot;contact&quot;.</li>
 </ul>
-<t>When internationalized and localized versions of an organization, postal
-address, or email exist, the internationalized version MUST be included under
-the predefined map key, while the localized version MUST be placed in the
-&quot;localizations&quot; map as described in <xref target="localizations"></xref>.</t>
+<t>When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
+the predefined map key, while the localized version MUST be placed in the &quot;localizations&quot; map as described in <xref target="localizations"></xref>.</t>
 </section>
 
 <section anchor="localizations"><name>Localizations</name>
-<t>A RPP request MUST NOT include a &quot;localizations&quot; member, as RPP clients are not expected to provide localized contact information. However,
-A RPP response MAY include a &quot;localizations&quot; member to provide localized versions of the contact information.</t>
-<t>If present, localized variants of name, organization, postal address, and
-email MUST be added to the &quot;localizations&quot; map. RPP implementations MUST
-expand all localizations, meaning a nested PatchObject key of the form
-&quot;{key1}/{key2}/.../{keyN}&quot; MUST NOT be used.</t>
-<t>The following is an elided example of a Card including a localized version of
-the postal address:</t>
+<t>If present, localized variants of name, organization, postal address, and email MUST be added to the &quot;localizations&quot; map. RPP implementations MUST
+expand all localizations, meaning a nested PatchObject key of the form &quot;{key1}/{key2}/.../{keyN}&quot; MUST NOT be used.</t>
+<t>The number of provided localizations MUST NOT exceed the number of languages supported by the RPP server. The language of each localization MUST be indicated by a <xref target="BCP47"></xref> language tag as the key in the &quot;localizations&quot; map.</t>
+<t>The following example of a Card includes a localized version of the postal address:</t>
 <figure><name>Example of handling localizations in JSContact
 </name>
 <sourcecode type="json"><![CDATA[{
   "@type": "Card",
-  "version": "1.0",
+  "version": "2.0",
   "language": "en",
   "name": {
     "full": "Joe User"
@@ -145,8 +158,7 @@ the postal address:</t>
         { "kind": "name",     "value": "Main Street 1" },
         { "kind": "locality", "value": "Ludwigshafen am Rhein" },
         { "kind": "region",   "value": "Rhineland-Palatinate" },
-        { "kind": "postcode", "value": "67067" },
-        { "kind": "country",  "value": "Germany" }
+        { "kind": "postcode", "value": "67067" }
       ],
       "countryCode": "DE"
     }
@@ -159,8 +171,7 @@ the postal address:</t>
             { "kind": "name",     "value": "Hauptstraße 1" },
             { "kind": "locality", "value": "Ludwigshafen am Rhein" },
             { "kind": "region",   "value": "Rheinland-Pfalz" },
-            { "kind": "postcode", "value": "67067" },
-            { "kind": "country",  "value": "Deutschland" }
+            { "kind": "postcode", "value": "67067" }
           ],
           "countryCode": "DE"
         }
@@ -217,27 +228,6 @@ Profile registry as described in <xref target="jscontact-profile-registry"></xre
 </tr>
 
 <tr>
-<td align="left">components</td>
-<td align="left">Name</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">kind</td>
-<td align="left">NameComponent</td>
-<td align="left"></td>
-<td align="left">title, given, surname</td>
-</tr>
-
-<tr>
-<td align="left">value</td>
-<td align="left">NameComponent</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
 <td align="left">organizations</td>
 <td align="left">Card</td>
 <td align="left"></td>
@@ -283,7 +273,7 @@ Profile registry as described in <xref target="jscontact-profile-registry"></xre
 <td align="left">kind</td>
 <td align="left">AddressComponent</td>
 <td align="left"></td>
-<td align="left">name, locality, region, postcode, country</td>
+<td align="left">name, locality, region, postcode</td>
 </tr>
 
 <tr>
@@ -365,10 +355,9 @@ Profile registry as described in <xref target="jscontact-profile-registry"></xre
 
 <section anchor="jscontact-profile-registry"><name>JSContact Profile Registry</name>
 <t>IANA is requested to register the following entry in the &quot;JSContact Profile&quot; registry [I-D.ietf-calext-jscontact-profiles]:</t>
-<t>Name:
-rpp
+<t>Name: rpp
 Profile Version: 1.0
-Reference: TODO</t>
+Reference: This document</t>
 <t>TODO</t>
 </section>
 </section>
@@ -381,24 +370,18 @@ Reference: TODO</t>
 <t>TODO</t>
 </section>
 
-<section anchor="change-history"><name>Change History</name>
-
-<section anchor="version-00"><name>Version 00</name>
-
-<ul spacing="compact">
-<li>Created initial document and added boilerplate sections.</li>
-</ul>
-</section>
-</section>
-
 </middle>
 
 <back>
 <references><name>Normative References</name>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml9/reference.BCP.47.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-calext-jscontact-profiles.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-regext-rdap-jscontact.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9553.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9982.xml"/>
 </references>
 
 <section anchor="acknowledgements" numbered="false"><name>Acknowledgements</name>
