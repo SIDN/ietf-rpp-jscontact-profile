@@ -10,7 +10,7 @@ Expires: 7 January 2027                                            DENIC
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-                 draft-wullink-rpp-jscontact-profile-00
+                 draft-wullink-rpp-jscontact-profile-01
 
 Abstract
 
@@ -77,7 +77,9 @@ Table of Contents
      5.1.  JSContact Profile Registry
    6.  Internationalization Considerations
    7.  Security Considerations
-   8.  Normative References
+   8.  Change History
+     8.1.  Version 00 to 01
+   9.  Normative References
    Acknowledgements
    Authors' Addresses
 
@@ -103,18 +105,9 @@ Table of Contents
 
    The RDAP JSContact profile [I-D.ietf-regext-rdap-jscontact] defines
    the constructs used when serving registration data to read-only
-   consumers.  The RPP profile defined in this document is a superset:
-   all JSContact constructs permitted by the RDAP profile are also
-   permitted in RPP.
-
-   The converse does not hold.  RPP supports additional JSContact
-   constructs required for provisioning that have no meaningful
-   equivalent in a read-only The RDAP JSContact profile
-   [I-D.ietf-regext-rdap-jscontact] defines the constructs used when
-   serving registration data to read-only consumers.  The RPP profile,
-   defined in this document, is a subset of these constructs.  All
-   JSContact constructs permitted by the RPP profile can be used for
-   RDAP.
+   consumers.  The RPP profile, defined in this document, is a subset of
+   these constructs.  All JSContact constructs permitted by the RPP
+   profile can be used for RDAP.
 
    The converse does not hold.  RDAP supports additional JSContact
    constructs that are useful in the read-only context of RDAP responses
@@ -367,7 +360,13 @@ Table of Contents
 
    TODO
 
-8.  Normative References
+8.  Change History
+
+8.1.  Version 00 to 01
+
+   -  Fixed duplicate text (Issue #14)
+
+9.  Normative References
 
    [BCP47]    Best Current Practice 47,
               <https://www.rfc-editor.org/info/bcp47>.

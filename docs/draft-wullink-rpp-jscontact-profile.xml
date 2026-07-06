@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-00" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
+<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
 
 <front>
-<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-00" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
+<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
 <author initials="M." surname="Wullink" fullname="Maarten Wullink"><organization>SIDN Labs</organization><address><postal><street></street>
 </postal><email>maarten.wullink@sidn.nl</email>
 <uri>https://sidn.nl/</uri>
@@ -35,13 +35,7 @@ servers are required to support when provisioning contact information.</t>
 <t>The Registration Data Access Protocol (RDAP) <xref target="RFC9083"></xref> provides read-only
 access to registration data managed by RPP. Both protocols use JSContact for
 contact representation, but with profiles suited to their respective roles.</t>
-<t>The RDAP JSContact profile <xref target="I-D.ietf-regext-rdap-jscontact"></xref> defines the
-constructs used when serving registration data to read-only consumers. The RPP
-profile defined in this document is a superset: all JSContact constructs
-permitted by the RDAP profile are also permitted in RPP.</t>
-<t>The converse does not hold. RPP supports additional JSContact constructs
-required for provisioning that have no meaningful equivalent in a read-only
-The RDAP JSContact profile <xref target="I-D.ietf-regext-rdap-jscontact"></xref> defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.</t>
+<t>The RDAP JSContact profile <xref target="I-D.ietf-regext-rdap-jscontact"></xref> defines the constructs used when serving registration data to read-only consumers. The RPP profile, defined in this document, is a subset of these constructs. All JSContact constructs permitted by the RPP profile can be used for RDAP.</t>
 <t>The converse does not hold. RDAP supports additional JSContact constructs that are useful in the read-only context of RDAP responses but that may hinder interoperability. These constructs are not present in RPP requests and responses.</t>
 </section>
 </section>
@@ -368,6 +362,16 @@ Reference: This document</t>
 
 <section anchor="security-considerations"><name>Security Considerations</name>
 <t>TODO</t>
+</section>
+
+<section anchor="change-history"><name>Change History</name>
+
+<section anchor="version-00-to-01"><name>Version 00 to 01</name>
+
+<ul spacing="compact">
+<li>Fixed duplicate text (Issue #14)</li>
+</ul>
+</section>
 </section>
 
 </middle>
