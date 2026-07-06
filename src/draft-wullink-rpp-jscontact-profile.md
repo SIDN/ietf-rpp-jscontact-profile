@@ -10,7 +10,7 @@ date = 2026-07-05
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-wullink-rpp-jscontact-profile-00"
+value = "draft-wullink-rpp-jscontact-profile-01"
 stream = "IETF"
 status = "standard"
 
@@ -264,6 +264,12 @@ TODO
 # Security Considerations
 
 TODO
+
+# Change History
+
+## Version 00 to 01
+
+- Fixed duplicate text ( Issue #14)
 
 {backmatter}
 
