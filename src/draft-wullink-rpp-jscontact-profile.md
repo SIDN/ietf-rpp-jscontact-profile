@@ -95,7 +95,7 @@ the JSContact specification [@!RFC9982].
 
 ### Version {#version}
 
-The Card "version" member value MUST be "2.0".
+The Card `"version"` member value MUST be `"2.0"`.
 
 ### Kind {#kind}
 
@@ -117,11 +117,11 @@ Other than the optional `"@type"` member, the Organization type MUST include onl
 
 ### Addresses {#addresses}
 
-The Address type MUST only use the `"components"` and `"countryCode"` members.
+Other than the optional `"@type"` member, the Address type MUST include only the `"components"` and `"countryCode"` members.
 
-Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
+Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The `"kind"` member value MUST be one of `"name"`, `"locality"`, `"region"`, or `"postcode"`.
 
-When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
+When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `"localizations"` map keyed by an appropriate [@!BCP47] language tag.
 
 ### Emails {#emails}
 
@@ -323,8 +323,9 @@ TODO
 
 - Fixed duplicate text ( Issue #14)
 - Aligned with draft-ietf-regext-rdap-jscontact-27
-- Allowed the Address "countryCode" member and removed Address "full" from the
+- Allowed the Address `"countryCode"` member and removed Address `"full"` from the
   profile properties (Issue #19)
+
 
 {backmatter}
 
