@@ -5,12 +5,12 @@
 Network Working Group                                         M. Wullink
 Internet-Draft                                                 SIDN Labs
 Intended status: Standards Track                              P. Kowalik
-Expires: 6 January 2027                                            DENIC
-                                                             5 July 2026
+Expires: 7 January 2027                                            DENIC
+                                                             6 July 2026
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-                 draft-wullink-rpp-jscontact-profile-01
+           draft-wullink-rpp-jscontact-profile-01 (editorial)
 
 Abstract
 
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2027.
+   This Internet-Draft will expire on 7 January 2027.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 1]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 1]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 2]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 2]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -165,7 +165,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 3]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 3]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -221,7 +221,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 4]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 4]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -277,7 +277,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 5]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 5]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -333,7 +333,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 6]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 6]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -389,7 +389,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 7]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 7]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -445,7 +445,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 8]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 8]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -457,17 +457,17 @@ Internet-Draft          JSContact Profile for RPP              July 2026
    [I-D.ietf-calext-jscontact-profiles]
               Stepanek, R. and M. Loffredo, "Protocol-Specific Profiles
               for JSContact", Work in Progress, Internet-Draft, draft-
-              ietf-calext-jscontact-profiles-14, 17 February 2026,
+              ietf-calext-jscontact-profiles-15, 27 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-calext-
-              jscontact-profiles-14>.
+              jscontact-profiles-15>.
 
    [I-D.ietf-regext-rdap-jscontact]
               Loffredo, M. and G. Brown, "Using JSContact in
               Registration Data Access Protocol (RDAP) JSON Responses",
               Work in Progress, Internet-Draft, draft-ietf-regext-rdap-
-              jscontact-25, 30 April 2026,
+              jscontact-27, 5 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-regext-
-              rdap-jscontact-25>.
+              rdap-jscontact-27>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -501,7 +501,7 @@ Acknowledgements
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                 [Page 9]
+Wullink & Kowalik        Expires 7 January 2027                 [Page 9]
 
 Internet-Draft          JSContact Profile for RPP              July 2026
 
@@ -557,4 +557,4 @@ Authors' Addresses
 
 
 
-Wullink & Kowalik        Expires 6 January 2027                [Page 10]
+Wullink & Kowalik        Expires 7 January 2027                [Page 10]
