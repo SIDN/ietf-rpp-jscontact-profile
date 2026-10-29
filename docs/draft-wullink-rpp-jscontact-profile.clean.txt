@@ -420,14 +420,6 @@ Table of Contents
               Languages", BCP 47, RFC 5646, DOI 10.17487/RFC5646,
               September 2009, <https://www.rfc-editor.org/info/rfc5646>.
 
-   [I-D.ietf-regext-rdap-jscontact]
-              Loffredo, M. and G. Brown, "Using JSContact in
-              Registration Data Access Protocol (RDAP) JSON Responses",
-              Work in Progress, Internet-Draft, draft-ietf-regext-rdap-
-              jscontact-27, 5 October 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-regext-
-              rdap-jscontact-27>.
-
    [RFC10050] Stepanek, R. and M. Loffredo, "Protocol-Specific Profiles
               for JSContact", RFC 10050, DOI 10.17487/RFC10050,
               September 2026,
@@ -459,6 +451,14 @@ Table of Contents
               <https://www.rfc-editor.org/info/rfc9982>.
 
 9.2.  Informative References
+
+   [I-D.ietf-regext-rdap-jscontact]
+              Loffredo, M. and G. Brown, "Using JSContact in
+              Registration Data Access Protocol (RDAP) JSON Responses",
+              Work in Progress, Internet-Draft, draft-ietf-regext-rdap-
+              jscontact-27, 5 October 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-regext-
+              rdap-jscontact-27>.
 
    [RFC8605]  Hollenbeck, S. and R. Carney, "vCard Format Extensions:
               ICANN Extensions for the Registration Data Access Protocol
