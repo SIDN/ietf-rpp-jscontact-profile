@@ -117,7 +117,7 @@ Other than the optional `"@type"` member, the Organization type MUST include onl
 
 ### Addresses {#addresses}
 
-The Address type MUST only use the "components" member.
+The Address type MUST only use the `"components"` and `"countryCode"` members.
 
 Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
 
@@ -245,9 +245,6 @@ registered in the JSContact Profile registry as described in
 - Property Name: addresses\
   Property Context: Card
 
-- Property Name: full\
-  Property Context: Address
-
 - Property Name: countryCode\
   Property Context: Address
 
@@ -302,8 +299,8 @@ Client validation MUST return an error if any JSContact properties other than th
 
 IANA is requested to register the following entry in the "JSContact Profile" registry [@!RFC10050]:
 
-Name: rpp
-Version: 1
+Name: rpp\
+Version: 1\
 Reference: (#profile-properties) of this document
 
 TODO
@@ -326,6 +323,8 @@ TODO
 
 - Fixed duplicate text ( Issue #14)
 - Aligned with draft-ietf-regext-rdap-jscontact-27
+- Allowed the Address "countryCode" member and removed Address "full" from the
+  profile properties (Issue #19)
 
 {backmatter}
 
