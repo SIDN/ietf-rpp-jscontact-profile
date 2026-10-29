@@ -75,6 +75,10 @@ RPP client - An HTTP user agent performing an RPP request.
 
 RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.
 
+Internationalized form - The representation of contact information in the Card members outside the `"localizations"` map.
+
+Localized form - A representation of contact information placed in the `"localizations"` map, keyed by a language tag.
+
 # Conventions Used in This Document
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [@!RFC2119].
@@ -120,6 +124,10 @@ Other than the optional `"@type"` member, the Organization type MUST include onl
 Other than the optional `"@type"` member, the Address type MUST include only the `"components"` and `"countryCode"` members.
 
 Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The `"kind"` member value MUST be one of `"name"`, `"locality"`, `"region"`, or `"postcode"`.
+
+The Address type MUST include the `"countryCode"` member. The `"components"` member MUST contain exactly one `"locality"` component, at most three `"name"` components, at most one `"region"` component, and at most one `"postcode"` component.
+
+The `"name"` components represent street lines. Their order in the `"components"` array is significant: RPP clients MUST list them in street-line order, and RPP servers MUST preserve that order.
 
 When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `"localizations"` map keyed by an appropriate [@!BCP47] language tag.
 
@@ -167,7 +175,9 @@ the predefined map key, while the localized version MUST be placed in the "local
 If present, localized variants of name, organization, postal address, and email MUST be added to the "localizations" map. RPP implementations MUST
 expand all localizations, meaning a nested PatchObject key of the form "{key1}/{key2}/.../{keyN}" MUST NOT be used.
 
-The number of provided localizations MUST NOT exceed the number of languages supported by the RPP server. The language of each localization MUST be indicated by a [@!BCP47] language tag as the key in the "localizations" map.
+The internationalized form MUST contain only characters that can be represented in the 7-bit US-ASCII character set [@!RFC20]. This applies to the `"full"` member of Name, the `"name"` member of Organization, the `"value"` member of AddressComponent, and the `"address"` member of EmailAddress. A localized form MAY contain any character permitted by [@!RFC9982]. When contact information is available only in a form containing non-ASCII characters, the RPP client MUST provide a US-ASCII transliteration as the internationalized form. An RPP server MUST reject a Card whose internationalized form contains characters outside the US-ASCII character set.
+
+An RPP server MUST support at least one localization per Card. An RPP server MAY support more localizations, as determined by server policy. An RPP server MUST reject a Card that contains more localizations than it supports. The language of each localization MUST be indicated by a [@!BCP47] language tag as the key in the "localizations" map.
 
 The following example of a Card includes a localized version of the postal address:
 
@@ -246,7 +256,8 @@ registered in the JSContact Profile registry as described in
   Property Context: Card
 
 - Property Name: countryCode\
-  Property Context: Address
+  Property Context: Address\
+  Restricted Attributes: mandatory
 
 - Property Name: components\
   Property Context: Address
@@ -325,6 +336,11 @@ TODO
 - Aligned with draft-ietf-regext-rdap-jscontact-27
 - Allowed the Address `"countryCode"` member and removed Address `"full"` from the
   profile properties (Issue #19)
+- Restricted the internationalized form to US-ASCII; required RPP servers to
+  support at least one localization, with additional localizations subject to
+  server policy (Issue #6)
+- Made the Address `"countryCode"` member mandatory, limited the number of each
+  AddressComponent kind, and made the order of street lines significant
 
 
 {backmatter}
