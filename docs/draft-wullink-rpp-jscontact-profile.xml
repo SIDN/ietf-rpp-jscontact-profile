@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01 (editor)" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
+<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01 (editorial)" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
 
 <front>
-<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01 (editor)" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
+<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01 (editorial)" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
 <author initials="M." surname="Wullink" fullname="Maarten Wullink"><organization>SIDN Labs</organization><address><postal><street></street>
 </postal><email>maarten.wullink@sidn.nl</email>
 <uri>https://sidn.nl/</uri>
@@ -65,7 +65,7 @@ listed in <xref target="profile-properties"></xref>. All types mentioned in this
 the JSContact specification <xref target="RFC9982"></xref>.</t>
 
 <section anchor="version"><name>Version</name>
-<t>The Card &quot;version&quot; member value MUST be &quot;2.0&quot;.</t>
+<t>The Card <tt>&quot;version&quot;</tt> member value MUST be <tt>&quot;2.0&quot;</tt>.</t>
 </section>
 
 <section anchor="kind"><name>Kind</name>
@@ -87,9 +87,9 @@ the JSContact specification <xref target="RFC9982"></xref>.</t>
 </section>
 
 <section anchor="addresses"><name>Addresses</name>
-<t>The Address type MUST only use the &quot;components&quot; member.</t>
-<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the AddressComponent type MUST include only the <tt>&quot;kind&quot;</tt> and <tt>&quot;value&quot;</tt> members. The &quot;kind&quot; member value MUST only use &quot;name&quot;, &quot;locality&quot;, &quot;region&quot;, or &quot;postcode&quot;.</t>
-<t>When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <tt>localizations</tt> map keyed by an appropriate <xref target="BCP47"></xref> language tag.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the Address type MUST include only the <tt>&quot;components&quot;</tt> and <tt>&quot;countryCode&quot;</tt> members.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the AddressComponent type MUST include only the <tt>&quot;kind&quot;</tt> and <tt>&quot;value&quot;</tt> members. The <tt>&quot;kind&quot;</tt> member value MUST be one of <tt>&quot;name&quot;</tt>, <tt>&quot;locality&quot;</tt>, <tt>&quot;region&quot;</tt>, or <tt>&quot;postcode&quot;</tt>.</t>
+<t>When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <tt>&quot;localizations&quot;</tt> map keyed by an appropriate <xref target="BCP47"></xref> language tag.</t>
 </section>
 
 <section anchor="emails"><name>Emails</name>
@@ -209,9 +209,6 @@ Restricted Attributes: mandatory</t>
 <li><t>Property Name: addresses<br />
 Property Context: Card</t>
 </li>
-<li><t>Property Name: full<br />
-Property Context: Address</t>
-</li>
 <li><t>Property Name: countryCode<br />
 Property Context: Address</t>
 </li>
@@ -267,8 +264,8 @@ is therefore not listed above.</t>
 
 <section anchor="jscontact-profile-registry"><name>JSContact Profile Registry</name>
 <t>IANA is requested to register the following entry in the &quot;JSContact Profile&quot; registry <xref target="RFC10050"></xref>:</t>
-<t>Name: rpp
-Version: 1
+<t>Name: rpp<br />
+Version: 1<br />
 Reference: <xref target="profile-properties"></xref> of this document</t>
 <t>TODO</t>
 </section>
@@ -292,6 +289,8 @@ expanded localizations.</t>
 <ul spacing="compact">
 <li>Fixed duplicate text ( Issue #14)</li>
 <li>Aligned with draft-ietf-regext-rdap-jscontact-27</li>
+<li>Allowed the Address <tt>&quot;countryCode&quot;</tt> member and removed Address <tt>&quot;full&quot;</tt> from the
+profile properties (Issue #19)</li>
 </ul>
 </section>
 </section>

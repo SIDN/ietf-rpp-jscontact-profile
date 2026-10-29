@@ -10,7 +10,7 @@ Expires: 7 January 2027                                            DENIC
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-            draft-wullink-rpp-jscontact-profile-01 (editor)
+           draft-wullink-rpp-jscontact-profile-01 (editorial)
 
 Abstract
 
@@ -90,7 +90,7 @@ Table of Contents
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
      5.1.  JSContact Profile Registry  . . . . . . . . . . . . . . .   9
    6.  Internationalization Considerations . . . . . . . . . . . . .   9
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
    8.  Change History  . . . . . . . . . . . . . . . . . . . . . . .  10
      8.1.  Version 00 to 01  . . . . . . . . . . . . . . . . . . . .  10
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
@@ -211,12 +211,12 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 4.1.6.  Addresses
 
-   The Address type MUST only use the "components" member.
+   Other than the optional "@type" member, the Address type MUST include
+   only the "components" and "countryCode" members.
 
    Other than the optional "@type" member, the AddressComponent type
    MUST include only the "kind" and "value" members.  The "kind" member
-   value MUST only use "name", "locality", "region", or "postcode".
-
+   value MUST be one of "name", "locality", "region", or "postcode".
 
 
 
@@ -227,7 +227,7 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
 
    When both an internationalized and a localized version of an address
-   are used, the localized version MUST be placed in the localizations
+   are used, the localized version MUST be placed in the "localizations"
    map keyed by an appropriate [BCP47] language tag.
 
 4.1.7.  Emails
@@ -418,9 +418,6 @@ Internet-Draft          JSContact Profile for RPP              July 2026
    -  Property Name: addresses
       Property Context: Card
 
-   -  Property Name: full
-      Property Context: Address
-
    -  Property Name: countryCode
       Property Context: Address
 
@@ -442,6 +439,9 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
    -  Property Name: phones
       Property Context: Card
+
+
+
 
 
 
@@ -484,7 +484,9 @@ Internet-Draft          JSContact Profile for RPP              July 2026
    IANA is requested to register the following entry in the "JSContact
    Profile" registry [RFC10050]:
 
-   Name: rpp Version: 1 Reference: Section 4.1.12 of this document
+   Name: rpp
+   Version: 1
+   Reference: Section 4.1.12 of this document
 
    TODO
 
@@ -492,11 +494,9 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
    TODO
 
-7.  Security Considerations
 
-   RPP servers should impose appropriate limits on the size and
-   complexity of JSContact objects received from RPP clients, including
-   the number and size of expanded localizations.
+
+
 
 
 
@@ -506,6 +506,12 @@ Wullink & Kowalik        Expires 7 January 2027                 [Page 9]
 Internet-Draft          JSContact Profile for RPP              July 2026
 
 
+7.  Security Considerations
+
+   RPP servers should impose appropriate limits on the size and
+   complexity of JSContact objects received from RPP clients, including
+   the number and size of expanded localizations.
+
    TODO
 
 8.  Change History
@@ -514,6 +520,8 @@ Internet-Draft          JSContact Profile for RPP              July 2026
 
    -  Fixed duplicate text ( Issue #14)
    -  Aligned with draft-ietf-regext-rdap-jscontact-27
+   -  Allowed the Address "countryCode" member and removed Address
+      "full" from the profile properties (Issue #19)
 
 9.  References
 
@@ -544,6 +552,16 @@ Internet-Draft          JSContact Profile for RPP              July 2026
               September 2026,
               <https://www.rfc-editor.org/info/rfc10050>.
 
+
+
+
+
+
+Wullink & Kowalik        Expires 7 January 2027                [Page 10]
+
+Internet-Draft          JSContact Profile for RPP              July 2026
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -553,14 +571,6 @@ Internet-Draft          JSContact Profile for RPP              July 2026
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://www.rfc-editor.org/info/rfc3986>.
-
-
-
-
-Wullink & Kowalik        Expires 7 January 2027                [Page 10]
-
-Internet-Draft          JSContact Profile for RPP              July 2026
-
 
    [RFC9083]  Hollenbeck, S. and A. Newton, "JSON Responses for the
               Registration Data Access Protocol (RDAP)", STD 95,
@@ -600,16 +610,6 @@ Authors' Addresses
    DENIC
    Email: pawel.kowalik@denic.de
    URI:   https://denic.de/
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -11,7 +11,7 @@
        This document defines a JSContact usage profile, conforming to the rules described in  , for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in   can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data. 
     " name="description">
 <meta content="xml2rfc 3.34.1" name="generator">
-<meta content="draft-wullink-rpp-jscontact-profile-01 (editor)" name="ietf.draft">
+<meta content="draft-wullink-rpp-jscontact-profile-01 (editorial)" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.1
     Python 3.10.12
@@ -1237,7 +1237,7 @@ li > p:last-of-type:only-child {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-wullink-rpp-jscontact-profile-01 (editor)</dd>
+<dd class="internet-draft">draft-wullink-rpp-jscontact-profile-01 (editorial)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2026-07-06" class="published">6 July 2026</time>
@@ -1484,7 +1484,7 @@ the JSContact specification <span>[<a href="#RFC9982" class="cite xref">RFC9982<
           <h4 id="name-version">
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-version" class="section-name selfRef">Version</a>
           </h4>
-<p id="section-4.1.1-1">The Card "version" member value MUST be "2.0".<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-1">The Card <code>"version"</code> member value MUST be <code>"2.0"</code>.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="kind">
@@ -1526,9 +1526,9 @@ the JSContact specification <span>[<a href="#RFC9982" class="cite xref">RFC9982<
           <h4 id="name-addresses">
 <a href="#section-4.1.6" class="section-number selfRef">4.1.6. </a><a href="#name-addresses" class="section-name selfRef">Addresses</a>
           </h4>
-<p id="section-4.1.6-1">The Address type MUST only use the "components" member.<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.6-2">Other than the optional <code>"@type"</code> member, the AddressComponent type MUST include only the <code>"kind"</code> and <code>"value"</code> members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".<a href="#section-4.1.6-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.6-3">When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <code>localizations</code> map keyed by an appropriate <span>[<a href="#BCP47" class="cite xref">BCP47</a>]</span> language tag.<a href="#section-4.1.6-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-1">Other than the optional <code>"@type"</code> member, the Address type MUST include only the <code>"components"</code> and <code>"countryCode"</code> members.<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-2">Other than the optional <code>"@type"</code> member, the AddressComponent type MUST include only the <code>"kind"</code> and <code>"value"</code> members. The <code>"kind"</code> member value MUST be one of <code>"name"</code>, <code>"locality"</code>, <code>"region"</code>, or <code>"postcode"</code>.<a href="#section-4.1.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-3">When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <code>"localizations"</code> map keyed by an appropriate <span>[<a href="#BCP47" class="cite xref">BCP47</a>]</span> language tag.<a href="#section-4.1.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="emails">
@@ -1685,64 +1685,60 @@ Restricted Attributes: mandatory<a href="#section-4.1.12-2.6.1" class="pilcrow">
 Property Context: Card<a href="#section-4.1.12-2.7.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.8">
-              <p id="section-4.1.12-2.8.1">Property Name: full<br>
+              <p id="section-4.1.12-2.8.1">Property Name: countryCode<br>
 Property Context: Address<a href="#section-4.1.12-2.8.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.9">
-              <p id="section-4.1.12-2.9.1">Property Name: countryCode<br>
+              <p id="section-4.1.12-2.9.1">Property Name: components<br>
 Property Context: Address<a href="#section-4.1.12-2.9.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.10">
-              <p id="section-4.1.12-2.10.1">Property Name: components<br>
-Property Context: Address<a href="#section-4.1.12-2.10.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.10.1">Property Name: kind<br>
+Property Context: AddressComponent<br>
+Restricted Enum Values: name, locality, region, postcode<a href="#section-4.1.12-2.10.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.11">
-              <p id="section-4.1.12-2.11.1">Property Name: kind<br>
-Property Context: AddressComponent<br>
-Restricted Enum Values: name, locality, region, postcode<a href="#section-4.1.12-2.11.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.11.1">Property Name: value<br>
+Property Context: AddressComponent<a href="#section-4.1.12-2.11.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.12">
-              <p id="section-4.1.12-2.12.1">Property Name: value<br>
-Property Context: AddressComponent<a href="#section-4.1.12-2.12.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.12.1">Property Name: emails<br>
+Property Context: Card<a href="#section-4.1.12-2.12.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.13">
-              <p id="section-4.1.12-2.13.1">Property Name: emails<br>
-Property Context: Card<a href="#section-4.1.12-2.13.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.13.1">Property Name: address<br>
+Property Context: EmailAddress<a href="#section-4.1.12-2.13.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.14">
-              <p id="section-4.1.12-2.14.1">Property Name: address<br>
-Property Context: EmailAddress<a href="#section-4.1.12-2.14.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.14.1">Property Name: phones<br>
+Property Context: Card<a href="#section-4.1.12-2.14.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.15">
-              <p id="section-4.1.12-2.15.1">Property Name: phones<br>
-Property Context: Card<a href="#section-4.1.12-2.15.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.15.1">Property Name: features<br>
+Property Context: Phone<br>
+Restricted Enum Values: voice, fax<a href="#section-4.1.12-2.15.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.16">
-              <p id="section-4.1.12-2.16.1">Property Name: features<br>
-Property Context: Phone<br>
-Restricted Enum Values: voice, fax<a href="#section-4.1.12-2.16.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.16.1">Property Name: number<br>
+Property Context: Phone<a href="#section-4.1.12-2.16.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.17">
-              <p id="section-4.1.12-2.17.1">Property Name: number<br>
-Property Context: Phone<a href="#section-4.1.12-2.17.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.17.1">Property Name: links<br>
+Property Context: Card<a href="#section-4.1.12-2.17.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.18">
-              <p id="section-4.1.12-2.18.1">Property Name: links<br>
-Property Context: Card<a href="#section-4.1.12-2.18.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.18.1">Property Name: kind<br>
+Property Context: Link<br>
+Restricted Enum Values: contact<a href="#section-4.1.12-2.18.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.19">
-              <p id="section-4.1.12-2.19.1">Property Name: kind<br>
-Property Context: Link<br>
-Restricted Enum Values: contact<a href="#section-4.1.12-2.19.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.12-2.19.1">Property Name: uri<br>
+Property Context: Link<a href="#section-4.1.12-2.19.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.12-2.20">
-              <p id="section-4.1.12-2.20.1">Property Name: uri<br>
-Property Context: Link<a href="#section-4.1.12-2.20.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-4.1.12-2.21">
-              <p id="section-4.1.12-2.21.1">Property Name: localizations<br>
+              <p id="section-4.1.12-2.20.1">Property Name: localizations<br>
 Property Context: Card<br>
-Restricted PatchObject: yes<a href="#section-4.1.12-2.21.1" class="pilcrow">¶</a></p>
+Restricted PatchObject: yes<a href="#section-4.1.12-2.20.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-4.1.12-3">The <code>"@type"</code> member is permitted on every JSContact object in this profile and
@@ -1765,8 +1761,8 @@ is therefore not listed above.<a href="#section-4.1.12-3" class="pilcrow">¶</a>
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-jscontact-profile-registry" class="section-name selfRef">JSContact Profile Registry</a>
         </h3>
 <p id="section-5.1-1">IANA is requested to register the following entry in the "JSContact Profile" registry <span>[<a href="#RFC10050" class="cite xref">RFC10050</a>]</span>:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Name: rpp
-Version: 1
+<p id="section-5.1-2">Name: rpp<br>
+Version: 1<br>
 Reference: <a href="#profile-properties" class="auto internal xref">Section 4.1.12</a> of this document<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">TODO<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1806,6 +1802,9 @@ expanded localizations.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <li class="compact" id="section-8.1-1.1">Fixed duplicate text ( Issue #14)<a href="#section-8.1-1.1" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-8.1-1.2">Aligned with draft-ietf-regext-rdap-jscontact-27<a href="#section-8.1-1.2" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-8.1-1.3">Allowed the Address <code>"countryCode"</code> member and removed Address <code>"full"</code> from the
+profile properties (Issue #19)<a href="#section-8.1-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>

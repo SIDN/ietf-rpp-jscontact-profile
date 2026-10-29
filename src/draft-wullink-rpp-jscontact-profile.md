@@ -10,7 +10,7 @@ date = 2026-07-06
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-wullink-rpp-jscontact-profile-01 (editor)"
+value = "draft-wullink-rpp-jscontact-profile-01 (editorial)"
 stream = "IETF"
 status = "standard"
 

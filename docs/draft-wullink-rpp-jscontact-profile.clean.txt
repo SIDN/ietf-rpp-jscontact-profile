@@ -10,7 +10,7 @@ Expires: 7 January 2027                                            DENIC
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-            draft-wullink-rpp-jscontact-profile-01 (editor)
+           draft-wullink-rpp-jscontact-profile-01 (editorial)
 
 Abstract
 
@@ -179,14 +179,15 @@ Table of Contents
 
 4.1.6.  Addresses
 
-   The Address type MUST only use the "components" member.
+   Other than the optional "@type" member, the Address type MUST include
+   only the "components" and "countryCode" members.
 
    Other than the optional "@type" member, the AddressComponent type
    MUST include only the "kind" and "value" members.  The "kind" member
-   value MUST only use "name", "locality", "region", or "postcode".
+   value MUST be one of "name", "locality", "region", or "postcode".
 
    When both an internationalized and a localized version of an address
-   are used, the localized version MUST be placed in the localizations
+   are used, the localized version MUST be placed in the "localizations"
    map keyed by an appropriate [BCP47] language tag.
 
 4.1.7.  Emails
@@ -320,9 +321,6 @@ Table of Contents
    -  Property Name: addresses
       Property Context: Card
 
-   -  Property Name: full
-      Property Context: Address
-
    -  Property Name: countryCode
       Property Context: Address
 
@@ -379,7 +377,9 @@ Table of Contents
    IANA is requested to register the following entry in the "JSContact
    Profile" registry [RFC10050]:
 
-   Name: rpp Version: 1 Reference: Section 4.1.12 of this document
+   Name: rpp
+   Version: 1
+   Reference: Section 4.1.12 of this document
 
    TODO
 
@@ -401,6 +401,8 @@ Table of Contents
 
    -  Fixed duplicate text ( Issue #14)
    -  Aligned with draft-ietf-regext-rdap-jscontact-27
+   -  Allowed the Address "countryCode" member and removed Address
+      "full" from the profile properties (Issue #19)
 
 9.  References
 
