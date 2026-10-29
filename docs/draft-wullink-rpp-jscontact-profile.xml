@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
+<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01 (editor)" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
 
 <front>
-<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
+<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01 (editor)" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
 <author initials="M." surname="Wullink" fullname="Maarten Wullink"><organization>SIDN Labs</organization><address><postal><street></street>
 </postal><email>maarten.wullink@sidn.nl</email>
 <uri>https://sidn.nl/</uri>
 </address></author><author initials="P." surname="Kowalik" fullname="Pawel Kowalik"><organization>DENIC</organization><address><postal><street></street>
 </postal><email>pawel.kowalik@denic.de</email>
 <uri>https://denic.de/</uri>
-</address></author><date year="2026" month="July" day="5"></date>
+</address></author><date year="2026" month="July" day="6"></date>
 <area>Internet</area>
 <workgroup>Network Working Group</workgroup>
 
 <abstract>
-<t>This document defines a JSContact usage profile, conforming to the rules described in <xref target="I-D.ietf-calext-jscontact-profiles"></xref>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <xref target="RFC9982"></xref> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
+<t>This document defines a JSContact usage profile, conforming to the rules described in <xref target="RFC10050"></xref>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <xref target="RFC9982"></xref> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
 </abstract>
 
 </front>
@@ -60,7 +60,7 @@ capabilities are not optimized for interoperable use in RPP payloads. This
 document therefore defines a usage profile for JSContact that simplifies
 implementation for both RPP clients and RPP servers.</t>
 <t>The JSContact profile for RPP is compliant with the rules described in
-<xref target="I-D.ietf-calext-jscontact-profiles"></xref>. The profile properties are formally
+<xref target="RFC10050"></xref>. The profile properties are formally
 listed in <xref target="profile-properties"></xref>. All types mentioned in this section refer to
 the JSContact specification <xref target="RFC9982"></xref>.</t>
 
@@ -69,38 +69,39 @@ the JSContact specification <xref target="RFC9982"></xref>.</t>
 </section>
 
 <section anchor="kind"><name>Kind</name>
-<t>The Card &quot;kind&quot; member value MUST be &quot;individual&quot; (default) or &quot;org&quot; to
-represent an individual or an organization, respectively.</t>
+<t>If present, the Card <tt>&quot;kind&quot;</tt> member value MUST be <tt>&quot;individual&quot;</tt> (default) or
+<tt>&quot;org&quot;</tt> to represent an individual or an organization, respectively.</t>
 </section>
 
 <section anchor="language"><name>Language</name>
-<t>The Card &quot;language&quot; member SHOULD be set when localizations are specified
-(i.e., when the &quot;localizations&quot; member is present and non-null).</t>
+<t>The Card <tt>&quot;language&quot;</tt> member SHOULD be set when localizations are specified
+(i.e., when the <tt>&quot;localizations&quot;</tt> member is present and non-empty).</t>
 </section>
 
 <section anchor="name"><name>Name</name>
-<t>The Card &quot;name&quot; member MUST include only the &quot;full&quot; member and MUST NOT include the &quot;components&quot; member.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the Name type MUST include only the <tt>&quot;full&quot;</tt> member.</t>
 </section>
 
 <section anchor="organizations"><name>Organizations</name>
-<t>The Organization type MUST include only the &quot;org&quot; member.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the Organization type MUST include only the <tt>&quot;name&quot;</tt> member.</t>
 </section>
 
 <section anchor="addresses"><name>Addresses</name>
 <t>The Address type MUST only use the &quot;components&quot; member.</t>
-<t>The AddressComponent MUST include only the &quot;kind&quot; and &quot;value&quot; members. The &quot;kind&quot; member value MUST only use &quot;name&quot;, &quot;locality&quot;, &quot;region&quot;, or &quot;postcode&quot;.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the AddressComponent type MUST include only the <tt>&quot;kind&quot;</tt> and <tt>&quot;value&quot;</tt> members. The &quot;kind&quot; member value MUST only use &quot;name&quot;, &quot;locality&quot;, &quot;region&quot;, or &quot;postcode&quot;.</t>
 <t>When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <tt>localizations</tt> map keyed by an appropriate <xref target="BCP47"></xref> language tag.</t>
 </section>
 
 <section anchor="emails"><name>Emails</name>
-<t>The EmailAddress type MUST include only the &quot;address&quot; member.</t>
+<t>Other than the optional <tt>&quot;@type&quot;</tt> member, the EmailAddress type MUST include only the <tt>&quot;address&quot;</tt> member.</t>
 </section>
 
 <section anchor="phones"><name>Phones</name>
-<t>The Phone type MUST include the &quot;number&quot; member and MAY include the &quot;features&quot;
-member. When the &quot;features&quot; member is present, its values MUST be &quot;voice&quot; or
-&quot;fax&quot;. When the &quot;features&quot; member is absent, the phone number is assumed to be
-a voice number.</t>
+<t>The Phone type MUST include the <tt>&quot;number&quot;</tt> member and MAY include the
+<tt>&quot;features&quot;</tt> member. If present, the <tt>&quot;features&quot;</tt> member MUST contain only the
+<tt>&quot;voice&quot;</tt> or <tt>&quot;fax&quot;</tt> keys, and the value associated with each key MUST be
+<tt>true</tt>. When the <tt>&quot;features&quot;</tt> member is absent, the phone number is assumed to
+be a voice number.</t>
 </section>
 
 <section anchor="links"><name>Links</name>
@@ -122,8 +123,8 @@ When the &quot;kind&quot; member is present, its value MUST be &quot;contact&quo
 </li>
 <li>&quot;url&quot; in the &quot;links&quot; map for a preferred contact URL; the &quot;kind&quot; member of
 the Link object MUST NOT be set.</li>
-<li>&quot;contact-uri&quot; in the &quot;links&quot; map for a contact URI; the &quot;kind&quot; member of
-the Link object MUST be set to &quot;contact&quot;.</li>
+<li>&quot;contact-uri&quot; in the &quot;links&quot; map for a contact URI as defined in <xref target="RFC8605"></xref>;
+the &quot;kind&quot; member of the Link object MUST be set to &quot;contact&quot;.</li>
 </ul>
 <t>When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
 the predefined map key, while the localized version MUST be placed in the &quot;localizations&quot; map as described in <xref target="localizations"></xref>.</t>
@@ -173,174 +174,91 @@ expand all localizations, meaning a nested PatchObject key of the form &quot;{ke
     }
   }
 }
-]]>
-</sourcecode>
+]]></sourcecode>
 </figure>
 </section>
 
 <section anchor="profile-properties"><name>Profile Properties</name>
-<t>The properties of the JSContact profile for RPP registered in the JSContact
-Profile registry as described in <xref target="jscontact-profile-registry"></xref> are:</t>
-<t>| Property    | Context          | Restricted  | Restricted Enum                          |</t>
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left"></th>
-<th align="left">Attributes</th>
-<th align="left">Values</th>
-</tr>
-</thead>
+<t>The following entries define the properties of the JSContact profile for RPP
+registered in the JSContact Profile registry as described in
+<xref target="jscontact-profile-registry"></xref>. The field names are those defined in
+<xref target="RFC10050"></xref>. Entry fields with empty values are omitted:</t>
 
-<tbody>
-<tr>
-<td align="left">language</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">kind</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left">individual, org</td>
-</tr>
-
-<tr>
-<td align="left">name</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">full</td>
-<td align="left">Name</td>
-<td align="left">mandatory</td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">organizations</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">name</td>
-<td align="left">Organization</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">addresses</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">full</td>
-<td align="left">Address</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">countryCode</td>
-<td align="left">Address</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">components</td>
-<td align="left">Address</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">kind</td>
-<td align="left">AddressComponent</td>
-<td align="left"></td>
-<td align="left">name, locality, region, postcode</td>
-</tr>
-
-<tr>
-<td align="left">value</td>
-<td align="left">AddressComponent</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">emails</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">address</td>
-<td align="left">EmailAddress</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">phones</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">features</td>
-<td align="left">Phone</td>
-<td align="left"></td>
-<td align="left">voice, fax</td>
-</tr>
-
-<tr>
-<td align="left">number</td>
-<td align="left">Phone</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">links</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">kind</td>
-<td align="left">Link</td>
-<td align="left"></td>
-<td align="left">contact</td>
-</tr>
-
-<tr>
-<td align="left">uri</td>
-<td align="left">Link</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-
-<tr>
-<td align="left">localizations</td>
-<td align="left">Card</td>
-<td align="left"></td>
-<td align="left">yes</td>
-</tr>
-</tbody>
-</table><t>Client validation MUST return an error if any JSContact properties other than those listed above are present.</t>
+<ul>
+<li><t>Property Name: language<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: kind<br />
+Property Context: Card<br />
+Restricted Enum Values: individual, org</t>
+</li>
+<li><t>Property Name: name<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: full<br />
+Property Context: Name<br />
+Restricted Attributes: mandatory</t>
+</li>
+<li><t>Property Name: organizations<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: name<br />
+Property Context: Organization<br />
+Restricted Attributes: mandatory</t>
+</li>
+<li><t>Property Name: addresses<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: full<br />
+Property Context: Address</t>
+</li>
+<li><t>Property Name: countryCode<br />
+Property Context: Address</t>
+</li>
+<li><t>Property Name: components<br />
+Property Context: Address</t>
+</li>
+<li><t>Property Name: kind<br />
+Property Context: AddressComponent<br />
+Restricted Enum Values: name, locality, region, postcode</t>
+</li>
+<li><t>Property Name: value<br />
+Property Context: AddressComponent</t>
+</li>
+<li><t>Property Name: emails<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: address<br />
+Property Context: EmailAddress</t>
+</li>
+<li><t>Property Name: phones<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: features<br />
+Property Context: Phone<br />
+Restricted Enum Values: voice, fax</t>
+</li>
+<li><t>Property Name: number<br />
+Property Context: Phone</t>
+</li>
+<li><t>Property Name: links<br />
+Property Context: Card</t>
+</li>
+<li><t>Property Name: kind<br />
+Property Context: Link<br />
+Restricted Enum Values: contact</t>
+</li>
+<li><t>Property Name: uri<br />
+Property Context: Link</t>
+</li>
+<li><t>Property Name: localizations<br />
+Property Context: Card<br />
+Restricted PatchObject: yes</t>
+</li>
+</ul>
+<t>The <tt>&quot;@type&quot;</tt> member is permitted on every JSContact object in this profile and
+is therefore not listed above.</t>
+<t>Client validation MUST return an error if any JSContact properties other than those listed above are present.</t>
 </section>
 </section>
 </section>
@@ -348,10 +266,10 @@ Profile registry as described in <xref target="jscontact-profile-registry"></xre
 <section anchor="iana-considerations"><name>IANA Considerations</name>
 
 <section anchor="jscontact-profile-registry"><name>JSContact Profile Registry</name>
-<t>IANA is requested to register the following entry in the &quot;JSContact Profile&quot; registry [I-D.ietf-calext-jscontact-profiles]:</t>
+<t>IANA is requested to register the following entry in the &quot;JSContact Profile&quot; registry <xref target="RFC10050"></xref>:</t>
 <t>Name: rpp
-Profile Version: 1.0
-Reference: This document</t>
+Version: 1
+Reference: <xref target="profile-properties"></xref> of this document</t>
 <t>TODO</t>
 </section>
 </section>
@@ -361,6 +279,9 @@ Reference: This document</t>
 </section>
 
 <section anchor="security-considerations"><name>Security Considerations</name>
+<t>RPP servers should impose appropriate limits on the size and complexity of
+JSContact objects received from RPP clients, including the number and size of
+expanded localizations.</t>
 <t>TODO</t>
 </section>
 
@@ -370,6 +291,7 @@ Reference: This document</t>
 
 <ul spacing="compact">
 <li>Fixed duplicate text ( Issue #14)</li>
+<li>Aligned with draft-ietf-regext-rdap-jscontact-27</li>
 </ul>
 </section>
 </section>
@@ -377,15 +299,20 @@ Reference: This document</t>
 </middle>
 
 <back>
+<references><name>References</name>
 <references><name>Normative References</name>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml9/reference.BCP.47.xml"/>
-<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-calext-jscontact-profiles.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-regext-rdap-jscontact.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.10050.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9553.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9982.xml"/>
+</references>
+<references><name>Informative References</name>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8605.xml"/>
+</references>
 </references>
 
 <section anchor="acknowledgements" numbered="false"><name>Acknowledgements</name>
