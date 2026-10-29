@@ -10,7 +10,7 @@ date = 2026-07-05
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-wullink-rpp-jscontact-profile-01"
+value = "draft-wullink-rpp-jscontact-profile-01 (editor)"
 stream = "IETF"
 status = "standard"
 
@@ -38,7 +38,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines a JSContact usage profile, conforming to the rules described in [@!I-D.ietf-calext-jscontact-profiles], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines a JSContact usage profile, conforming to the rules described in [@!RFC10050], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -89,7 +89,7 @@ document therefore defines a usage profile for JSContact that simplifies
 implementation for both RPP clients and RPP servers.
 
 The JSContact profile for RPP is compliant with the rules described in
-[@!I-D.ietf-calext-jscontact-profiles]. The profile properties are formally
+[@!RFC10050]. The profile properties are formally
 listed in (#profile-properties). All types mentioned in this section refer to
 the JSContact specification [@!RFC9982].
 
@@ -99,40 +99,41 @@ The Card "version" member value MUST be "2.0".
 
 ### Kind {#kind}
 
-The Card "kind" member value MUST be "individual" (default) or "org" to
-represent an individual or an organization, respectively.
+If present, the Card `"kind"` member value MUST be `"individual"` (default) or
+`"org"` to represent an individual or an organization, respectively.
 
 ### Language {#language}
 
-The Card "language" member SHOULD be set when localizations are specified
-(i.e., when the "localizations" member is present and non-null).
+The Card `"language"` member SHOULD be set when localizations are specified
+(i.e., when the `"localizations"` member is present and non-empty).
 
 ### Name {#name}
 
-The Card "name" member MUST include only the "full" member and MUST NOT include the "components" member.
+Other than the optional `"@type"` member, the Name type MUST include only the `"full"` member.
 
 ### Organizations {#organizations}
 
-The Organization type MUST include only the "org" member.
+Other than the optional `"@type"` member, the Organization type MUST include only the `"name"` member.
 
 ### Addresses {#addresses}
 
 The Address type MUST only use the "components" member.
 
-The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
+Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".
 
 When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `localizations` map keyed by an appropriate [@!BCP47] language tag.
 
 ### Emails {#emails}
 
-The EmailAddress type MUST include only the "address" member.
+Other than the optional `"@type"` member, the EmailAddress type MUST include only the `"address"` member.
 
 ### Phones {#phones}
 
-The Phone type MUST include the "number" member and MAY include the "features"
-member. When the "features" member is present, its values MUST be "voice" or
-"fax". When the "features" member is absent, the phone number is assumed to be
-a voice number.
+The Phone type MUST include the `"number"` member and MAY include the
+`"features"` member. If present, the `"features"` member MUST contain only the
+`"voice"` or `"fax"` keys, and the value associated with each key MUST be
+`true`. When the `"features"` member is absent, the phone number is assumed to
+be a voice number.
 
 ### Links {#links}
 
@@ -155,8 +156,8 @@ A JSContact map key MUST comply with the Id type definition in [@!RFC9553]. RPP 
 <!-- Allow for multiple email/voice/fax numbers? See issue #5 -->
 - "url" in the "links" map for a preferred contact URL; the "kind" member of
   the Link object MUST NOT be set.
-- "contact-uri" in the "links" map for a contact URI; the "kind" member of
-  the Link object MUST be set to "contact".
+- "contact-uri" in the "links" map for a contact URI as defined in [@RFC8605];
+  the "kind" member of the Link object MUST be set to "contact".
 
 When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
 the predefined map key, while the localized version MUST be placed in the "localizations" map as described in (#localizations).
@@ -213,47 +214,97 @@ Figure: Example of handling localizations in JSContact
 
 ### Profile Properties {#profile-properties}
 
-The properties of the JSContact profile for RPP registered in the JSContact
-Profile registry as described in (#jscontact-profile-registry) are:
+The following entries define the properties of the JSContact profile for RPP
+registered in the JSContact Profile registry as described in
+(#jscontact-profile-registry). The field names are those defined in
+[@!RFC10050]. Entry fields with empty values are omitted:
 
-<!-- TODO: update Restricted Attributes, for RPP a lot more properties are restricted than in the table below -->
+<!-- TODO: update Restricted Attributes, for RPP a lot more properties are restricted than in the list below -->
 
-| Property    | Context          | Restricted  | Restricted Enum                          |
-|             |                  | Attributes  | Values                                   |
-|:------------|:-----------------|:------------|:-----------------------------------------|
-| language    | Card             |             |                                          |
-| kind        | Card             |             | individual, org                          |
-| name        | Card             |             |                                          |
-| full        | Name             | mandatory   |                                          |
-| organizations | Card           |             |                                          |
-| name        | Organization     |             |                                          |
-| addresses   | Card             |             |                                          |
-| full        | Address          |             |                                          |
-| countryCode | Address          |             |                                          |
-| components  | Address          |             |                                          |
-| kind        | AddressComponent |             | name, locality, region, postcode         |
-| value       | AddressComponent |             |                                          |
-| emails      | Card             |             |                                          |
-| address     | EmailAddress     |             |                                          |
-| phones      | Card             |             |                                          |
-| features    | Phone            |             | voice, fax                               |
-| number      | Phone            |             |                                          |
-| links       | Card             |             |                                          |
-| kind        | Link             |             | contact                                  |
-| uri         | Link             |             |                                          |
-| localizations | Card           |             | yes                                      |
+- Property Name: language\
+  Property Context: Card
+
+- Property Name: kind\
+  Property Context: Card\
+  Restricted Enum Values: individual, org
+
+- Property Name: name\
+  Property Context: Card
+
+- Property Name: full\
+  Property Context: Name\
+  Restricted Attributes: mandatory
+
+- Property Name: organizations\
+  Property Context: Card
+
+- Property Name: name\
+  Property Context: Organization\
+  Restricted Attributes: mandatory
+
+- Property Name: addresses\
+  Property Context: Card
+
+- Property Name: full\
+  Property Context: Address
+
+- Property Name: countryCode\
+  Property Context: Address
+
+- Property Name: components\
+  Property Context: Address
+
+- Property Name: kind\
+  Property Context: AddressComponent\
+  Restricted Enum Values: name, locality, region, postcode
+
+- Property Name: value\
+  Property Context: AddressComponent
+
+- Property Name: emails\
+  Property Context: Card
+
+- Property Name: address\
+  Property Context: EmailAddress
+
+- Property Name: phones\
+  Property Context: Card
+
+- Property Name: features\
+  Property Context: Phone\
+  Restricted Enum Values: voice, fax
+
+- Property Name: number\
+  Property Context: Phone
+
+- Property Name: links\
+  Property Context: Card
+
+- Property Name: kind\
+  Property Context: Link\
+  Restricted Enum Values: contact
+
+- Property Name: uri\
+  Property Context: Link
+
+- Property Name: localizations\
+  Property Context: Card\
+  Restricted PatchObject: yes
+
+The `"@type"` member is permitted on every JSContact object in this profile and
+is therefore not listed above.
 
 Client validation MUST return an error if any JSContact properties other than those listed above are present.
 
 # IANA Considerations
 
-## JSContact Profile Registry
+## JSContact Profile Registry {#jscontact-profile-registry}
 
-IANA is requested to register the following entry in the "JSContact Profile" registry [I-D.ietf-calext-jscontact-profiles]:
+IANA is requested to register the following entry in the "JSContact Profile" registry [@!RFC10050]:
 
 Name: rpp
-Profile Version: 1.0
-Reference: This document
+Version: 1
+Reference: (#profile-properties) of this document
 
 TODO
 
@@ -263,6 +314,10 @@ TODO
 
 # Security Considerations
 
+RPP servers should impose appropriate limits on the size and complexity of
+JSContact objects received from RPP clients, including the number and size of
+expanded localizations.
+
 TODO
 
 # Change History
@@ -270,6 +325,7 @@ TODO
 ## Version 00 to 01
 
 - Fixed duplicate text ( Issue #14)
+- Aligned with draft-ietf-regext-rdap-jscontact-27
 
 {backmatter}
 
