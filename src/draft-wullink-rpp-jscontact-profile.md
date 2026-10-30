@@ -125,9 +125,9 @@ Other than the optional `"@type"` member, the Address type MUST include only the
 
 Other than the optional `"@type"` member, the AddressComponent type MUST include only the `"kind"` and `"value"` members. The `"kind"` member value MUST be one of `"name"`, `"locality"`, `"region"`, or `"postcode"`.
 
-The Address type MUST include the `"countryCode"` member. The `"components"` member MUST contain exactly one `"locality"` component, at most three `"name"` components, at most one `"region"` component, and at most one `"postcode"` component.
+The Address type MUST include the `"countryCode"` member. The `"components"` member MUST contain exactly one `"locality"` component, at most one `"region"` component, and at most one `"postcode"` component.
 
-The `"name"` components represent street lines. Their order in the `"components"` array is significant: RPP clients MUST list them in street-line order, and RPP servers MUST preserve that order.
+The `"name"` components represent street lines. The server MAY constraint the maximum number of `"name"` components supported. Their order in the `"components"` array is significant and MUST be preserved.
 
 When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `"localizations"` map keyed by an appropriate [@!BCP47] language tag.
 
