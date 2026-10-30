@@ -378,7 +378,7 @@ Table of Contents
    Profile" registry [RFC10050]:
 
    Name: rpp
-   Version: 1
+   Version: 1.0
    Reference: Section 4.1.12 of this document
 
    TODO

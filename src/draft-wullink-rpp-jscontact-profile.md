@@ -300,7 +300,7 @@ Client validation MUST return an error if any JSContact properties other than th
 IANA is requested to register the following entry in the "JSContact Profile" registry [@!RFC10050]:
 
 Name: rpp\
-Version: 1\
+Version: 1.0\
 Reference: (#profile-properties) of this document
 
 TODO
