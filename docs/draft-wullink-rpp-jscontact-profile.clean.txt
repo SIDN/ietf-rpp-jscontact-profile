@@ -203,6 +203,34 @@ Table of Contents
    key MUST be true.  When the "features" member is absent, the phone
    number is assumed to be a voice number.
 
+   The "number" member value MUST be a "tel" URI [RFC3966] conforming to
+   the rpp-telephone-uri rule in Figure 1.  This rule restricts the
+   [RFC3966] global-number to the telephone number format of the e164
+   type in Section 2.5 of [RFC5733]: a leading "+", a country code of
+   one to three digits, a ".", and a subscriber number of up to 14
+   digits, optionally followed by an "ext" parameter carrying one or
+   more digits.  The total number of digits in the country code and
+   subscriber number MUST NOT exceed 15.  Local numbers, other visual
+   separators, and other [RFC3966] parameters (e.g., "isub" and "phone-
+   context") MUST NOT be used.
+
+   The grammar uses ABNF [RFC5234].  "DIGIT" is defined in [RFC5234].
+
+   rpp-telephone-uri        = "tel:" rpp-global-number
+                              ; restricts telephone-uri [RFC3966]
+   rpp-global-number        = rpp-global-number-digits [ rpp-extension ]
+                              ; restricts global-number [RFC3966]
+   rpp-global-number-digits = "+" 1*3DIGIT "." 1*14DIGIT
+                              ; restricts global-number-digits [RFC3966]
+   rpp-extension            = ";ext=" 1*DIGIT
+                              ; restricts extension [RFC3966]
+
+                 Figure 1: ABNF for the Phone number member
+
+   Examples of valid values are "tel:+49.6215550100" and
+   "tel:+49.6215550100;ext=123".  An RPP server MUST reject a Phone
+   whose "number" member value does not conform to this format.
+
 4.1.9.  Links
 
    The Link type MUST include the "uri" member and MAY include the
@@ -234,6 +262,14 @@ Table of Contents
    MUST be placed in the "localizations" map as described in
    Section 4.1.11.
 
+   Keys MUST be of the form "<predefined key>-<sequential number>" for
+   any additional entry in the "emails" or "phones" map, where the
+   sequential number is a decimal integer starting at 1.  For example, a
+   "phones" map containing three voice numbers contains the keys
+   "voice", "voice-1", and "voice-2".  An additional key MUST NOT be
+   used unless the corresponding predefined key is also present, and the
+   sequential numbers MUST NOT contain gaps.
+
 4.1.11.  Localizations
 
    If present, localized variants of name, organization, postal address,
@@ -247,8 +283,9 @@ Table of Contents
    localization MUST be indicated by a [BCP47] language tag as the key
    in the "localizations" map.
 
-   The following example of a Card includes a localized version of the
-   postal address:
+   The following example of a Card includes two email addresses, two
+   voice numbers, a fax number, and a localized version of the postal
+   address:
 
    {
      "@type": "Card",
@@ -271,6 +308,23 @@ Table of Contents
          "countryCode": "DE"
        }
      },
+     "emails": {
+       "email":   { "address": "joe.user@example.com" },
+       "email-1": { "address": "joe@example.net" }
+     },
+     "phones": {
+       "voice": {
+         "features": { "voice": true },
+         "number": "tel:+49.6215550100"
+       },
+       "voice-1": {
+         "number": "tel:+49.6215550101;ext=1234"
+       },
+       "fax": {
+         "features": { "fax": true },
+         "number": "tel:+49.6215550199"
+       }
+     },
      "localizations": {
        "de": {
          "addresses": {
@@ -288,7 +342,7 @@ Table of Contents
      }
    }
 
-          Figure 1: Example of handling localizations in JSContact
+          Figure 2: Example of handling localizations in JSContact
 
 4.1.12.  Profile Properties
 
@@ -403,6 +457,11 @@ Table of Contents
    -  Aligned with draft-ietf-regext-rdap-jscontact-27
    -  Allowed the Address "countryCode" member and removed Address
       "full" from the profile properties (Issue #19)
+   -  Allowed multiple email addresses and voice and fax numbers using
+      sequentially numbered map keys (Issue #5)
+   -  Required the Phone "number" member to be a "tel" URI [RFC3966]
+      restricted to the EPP telephone number format, and added ABNF for
+      it
 
 9.  References
 
@@ -430,10 +489,19 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC3966]  Schulzrinne, H., "The tel URI for Telephone Numbers",
+              RFC 3966, DOI 10.17487/RFC3966, December 2004,
+              <https://www.rfc-editor.org/info/rfc3966>.
+
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://www.rfc-editor.org/info/rfc3986>.
+
+   [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", STD 68, RFC 5234,
+              DOI 10.17487/RFC5234, January 2008,
+              <https://www.rfc-editor.org/info/rfc5234>.
 
    [RFC9083]  Hollenbeck, S. and A. Newton, "JSON Responses for the
               Registration Data Access Protocol (RDAP)", STD 95,
@@ -459,6 +527,10 @@ Table of Contents
               jscontact-27, 5 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-regext-
               rdap-jscontact-27>.
+
+   [RFC5733]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
+              Contact Mapping", STD 69, RFC 5733, DOI 10.17487/RFC5733,
+              August 2009, <https://www.rfc-editor.org/info/rfc5733>.
 
    [RFC8605]  Hollenbeck, S. and R. Carney, "vCard Format Extensions:
               ICANN Extensions for the Registration Data Access Protocol

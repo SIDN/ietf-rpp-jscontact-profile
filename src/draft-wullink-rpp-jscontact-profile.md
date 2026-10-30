@@ -135,13 +135,29 @@ The Phone type MUST include the `"number"` member and MAY include the
 `true`. When the `"features"` member is absent, the phone number is assumed to
 be a voice number.
 
-The `"number"` member value MUST be a telephone number in the format defined
-for the `e164` type in Section 2.5 of [@RFC5733]: a leading `"+"`, a country
-code of one to three digits, a `"."`, and a subscriber number of up to 14
-digits (e.g., `"+49.6215550100"`). The value MAY be followed by `"x"` and an
-extension of one or more digits (e.g., `"+49.6215550100x123"`). URI forms, such
-as the `"tel"` URI scheme, MUST NOT be used. An RPP server MUST reject a Phone
-whose `"number"` member value does not conform to this format.
+The `"number"` member value MUST be a `"tel"` URI [@!RFC3966] conforming to
+the `rpp-telephone-uri` rule in (#fig-tel-abnf). This rule restricts the
+[@!RFC3966] `global-number` to the telephone number format of the `e164` type in Section 2.5 of [@RFC5733]: a leading `"+"`, a country code of one to three digits, a `"."`, and a subscriber number of up to 14 digits, optionally followed by an `"ext"` parameter carrying one or more digits. The total number of digits in the country code and subscriber number MUST NOT exceed 15. Local
+numbers, other visual separators, and other [@!RFC3966] parameters (e.g., `"isub"` and `"phone-context"`) MUST NOT be used.
+
+The grammar uses ABNF [@!RFC5234]. `"DIGIT"` is defined in [@!RFC5234].
+
+{#fig-tel-abnf}
+~~~ abnf
+rpp-telephone-uri        = "tel:" rpp-global-number
+                           ; restricts telephone-uri [RFC3966]
+rpp-global-number        = rpp-global-number-digits [ rpp-extension ]
+                           ; restricts global-number [RFC3966]
+rpp-global-number-digits = "+" 1*3DIGIT "." 1*14DIGIT
+                           ; restricts global-number-digits [RFC3966]
+rpp-extension            = ";ext=" 1*DIGIT
+                           ; restricts extension [RFC3966]
+~~~
+Figure: ABNF for the Phone number member
+
+Examples of valid values are `"tel:+49.6215550100"` and
+`"tel:+49.6215550100;ext=123"`. An RPP server MUST reject a Phone whose
+`"number"` member value does not conform to this format.
 
 ### Links {#links}
 
@@ -164,19 +180,10 @@ A JSContact map key MUST comply with the Id type definition in [@!RFC9553]. RPP 
 - "contact-uri" in the "links" map for a contact URI as defined in [@RFC8605];
   the "kind" member of the Link object MUST be set to "contact".
 
-When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
-the predefined map key, while the localized version MUST be placed in the "localizations" map as described in (#localizations).
+When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under the predefined map key, while the localized version MUST be placed in the "localizations" map as described in (#localizations).
 
-RPP clients and RPP servers MUST use keys of the form
-`"<predefined key>-<sequential number>"` for any additional entry in the
-`"emails"` or `"phones"` map, where the sequential number is a decimal integer
-starting at 1. For example, a `"phones"` map containing three voice numbers
-contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key
-MUST NOT be used unless the corresponding predefined key is also present, and
-the sequential numbers MUST NOT contain gaps.
+Keys MUST be of the form `"<predefined key>-<sequential number>"` for any additional entry in the `"emails"` or `"phones"` map, where the sequential number is a decimal integer starting at 1. For example, a `"phones"` map containing three voice numbers contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps.
 
-An RPP server MUST keep map keys stable until the associated contact
-information is changed.
 
 ### Localizations {#localizations}
 
@@ -216,14 +223,14 @@ The following example of a Card includes two email addresses, two voice numbers,
   "phones": {
     "voice": {
       "features": { "voice": true },
-      "number": "+49.6215550100"
+      "number": "tel:+49.6215550100"
     },
     "voice-1": {
-      "number": "+49.6215550101"
+      "number": "tel:+49.6215550101;ext=1234"
     },
     "fax": {
       "features": { "fax": true },
-      "number": "+49.6215550199"
+      "number": "tel:+49.6215550199"
     }
   },
   "localizations": {
@@ -360,7 +367,8 @@ TODO
   profile properties (Issue #19)
 - Allowed multiple email addresses and voice and fax numbers using sequentially
   numbered map keys (Issue #5)
-- Required the EPP telephone number format for the Phone `"number"` member
+- Required the Phone `"number"` member to be a `"tel"` URI [@!RFC3966]
+  restricted to the EPP telephone number format, and added ABNF for it
 
 
 {backmatter}
