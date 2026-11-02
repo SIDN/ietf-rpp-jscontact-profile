@@ -441,7 +441,7 @@ Internet-Draft          JSContact Profile for RPP          November 2026
          "addresses": {
            "addr": {
              "components": [
-               { "kind": "name",     "value": "Hauptstraße 1" },
+               { "kind": "name",     "value": "Hauptstrasse 1" },
 
 
 
