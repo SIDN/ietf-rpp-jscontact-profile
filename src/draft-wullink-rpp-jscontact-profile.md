@@ -4,13 +4,13 @@ abbrev = "JSContact Profile for RPP"
 area = "Internet"
 workgroup = "Network Working Group"
 submissiontype = "IETF"
-keyword = [""]
+keyword = ["RPP", "JSContact", "contact", "provisioning"]
 TocDepth = 4
-date = 2026-07-06
+date = 2026-11-02
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-wullink-rpp-jscontact-profile-01 (editorial)"
+value = "draft-wullink-rpp-jscontact-profile-02"
 stream = "IETF"
 status = "standard"
 
@@ -18,7 +18,6 @@ status = "standard"
 initials="M."
 surname="Wullink"
 fullname="Maarten Wullink"
-abbrev = ""
 organization = "SIDN Labs"
   [author.address]
   email = "maarten.wullink@sidn.nl"
@@ -28,7 +27,6 @@ organization = "SIDN Labs"
 initials="P."
 surname="Kowalik"
 fullname="Pawel Kowalik"
-abbrev = ""
 organization = "DENIC"
   [author.address]
   email = "pawel.kowalik@denic.de"
@@ -38,7 +36,7 @@ organization = "DENIC"
 
 .# Abstract
 
-This document defines a JSContact usage profile, conforming to the rules described in [@!RFC10050], for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in [@!RFC9982] can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
+This document defines a JSContact usage profile, conforming to the rules described in RFC 10050, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in RFC 9982 can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.
 
 {mainmatter}
 
@@ -81,7 +79,7 @@ Localized form - A representation of contact information placed in the `"localiz
 
 # Conventions Used in This Document
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [@!RFC2119].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [@!RFC2119].
 
 # Using JSContact in RPP
 
@@ -127,7 +125,7 @@ Other than the optional `"@type"` member, the AddressComponent type MUST include
 
 The Address type MUST include the `"countryCode"` member. The `"components"` member MUST contain exactly one `"locality"` component, at most one `"region"` component, and at most one `"postcode"` component.
 
-The `"name"` components represent street lines. The server MAY constraint the maximum number of `"name"` components supported. Their order in the `"components"` array is significant and MUST be preserved.
+The `"name"` components represent street lines. The server MAY constrain the maximum number of `"name"` components supported. Their order in the `"components"` array is significant and MUST be preserved.
 
 When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the `"localizations"` map keyed by an appropriate [@!BCP47] language tag.
 
@@ -271,6 +269,9 @@ registered in the JSContact Profile registry as described in
 
 <!-- TODO: update Restricted Attributes, for RPP a lot more properties are restricted than in the list below -->
 
+- Property Name: version\
+  Property Context: Card
+
 - Property Name: language\
   Property Context: Card
 
@@ -342,7 +343,7 @@ registered in the JSContact Profile registry as described in
 The `"@type"` member is permitted on every JSContact object in this profile and
 is therefore not listed above.
 
-Client validation MUST return an error if any JSContact properties other than those listed above are present.
+An RPP server MUST reject a Card that contains a JSContact property not listed in this section.
 
 # IANA Considerations
 
@@ -370,21 +371,39 @@ TODO
 
 # Change History
 
-## Version 00 to 01
+RFC Editor: please remove this section before publication.
 
-- Fixed duplicate text ( Issue #14)
-- Aligned with draft-ietf-regext-rdap-jscontact-27
-- Allowed the Address `"countryCode"` member and removed Address `"full"` from the
-  profile properties (Issue #19)
-- Restricted the internationalized form to US-ASCII; required RPP servers to
+## Version 01 to 02
+
+- Replaced the reference to draft-ietf-calext-jscontact-profiles with RFC 10050
+- Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP profile a
+  subset of the RDAP JSContact profile, and made that reference informative
+  (Issue #20)
+- Made the Address `"countryCode"` member mandatory, removed Address `"full"`
+  from the profile properties, limited the number of each AddressComponent
+  kind, and made the order of street lines significant (Issue #19)
+- Restricted the internationalized form to US-ASCII and required RPP servers to
   support at least one localization, with additional localizations subject to
   server policy (Issue #6)
-- Made the Address `"countryCode"` member mandatory, limited the number of each
-  AddressComponent kind, and made the order of street lines significant
 - Allowed multiple email addresses and voice and fax numbers using sequentially
   numbered map keys (Issue #5)
-- Required the Phone `"number"` member to be a `"tel"` URI [@!RFC3966]
-  restricted to the EPP telephone number format, and added ABNF for it
+- Required the Phone `"number"` member to be a `"tel"` URI (RFC 3966)
+  restricted to the Extensible Provisioning Protocol (EPP) telephone number
+  format, and added ABNF for it
+- Added the terms internationalized form and localized form
+- Permitted the `"@type"` member on every JSContact object and corrected the
+  Organization member to `"name"`
+- Made the Card `"kind"` member optional
+- Converted the profile properties table into a list using the RFC 10050 field
+  names
+- Referenced RFC 8605 for the `"contact-uri"` map key
+- Added the Card `"version"` member to the profile properties
+- Required RPP servers, instead of client validation, to reject a Card
+  containing properties outside the profile
+
+## Version 00 to 01
+
+- Fixed duplicate text (Issue #14)
 
 
 {backmatter}
