@@ -5,19 +5,19 @@
 Network Working Group                                         M. Wullink
 Internet-Draft                                                 SIDN Labs
 Intended status: Standards Track                              P. Kowalik
-Expires: 7 January 2027                                            DENIC
-                                                             6 July 2026
+Expires: 6 May 2027                                                DENIC
+                                                         2 November 2026
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-           draft-wullink-rpp-jscontact-profile-01 (editorial)
+                 draft-wullink-rpp-jscontact-profile-02
 
 Abstract
 
    This document defines a JSContact usage profile, conforming to the
-   rules described in [RFC10050], for the RESTful Provisioning Protocol
+   rules described in RFC 10050, for the RESTful Provisioning Protocol
    (RPP).  The JSContact Profile for RPP specifies how the JSContact
-   format defined in [RFC9982] can be used as a standardized
+   format defined in RFC 9982 can be used as a standardized
    representation of contact information within RPP operations, enabling
    interoperability and consistency across RPP implementations that
    manage contact data.
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 6 May 2027.
 
 Copyright Notice
 
@@ -78,7 +78,8 @@ Table of Contents
    6.  Internationalization Considerations
    7.  Security Considerations
    8.  Change History
-     8.1.  Version 00 to 01
+     8.1.  Version 01 to 02
+     8.2.  Version 00 to 01
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -138,9 +139,9 @@ Table of Contents
 
 3.  Conventions Used in This Document
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-   NOT","SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
-   this document are to be interpreted as described in [RFC2119].
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [RFC2119].
 
 4.  Using JSContact in RPP
 
@@ -197,7 +198,7 @@ Table of Contents
    most one "region" component, and at most one "postcode" component.
 
    The "name" components represent street lines.  The server MAY
-   constraint the maximum number of "name" components supported.  Their
+   constrain the maximum number of "name" components supported.  Their
    order in the "components" array is significant and MUST be preserved.
 
    When both an internationalized and a localized version of an address
@@ -480,23 +481,38 @@ Table of Contents
 
 8.  Change History
 
-8.1.  Version 00 to 01
+   RFC Editor: please remove this section before publication.
 
-   -  Fixed duplicate text ( Issue #14)
-   -  Aligned with draft-ietf-regext-rdap-jscontact-27
-   -  Allowed the Address "countryCode" member and removed Address
-      "full" from the profile properties (Issue #19)
-   -  Restricted the internationalized form to US-ASCII; required RPP
+8.1.  Version 01 to 02
+
+   -  Replaced the reference to draft-ietf-calext-jscontact-profiles
+      with RFC 10050
+   -  Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP
+      profile a subset of the RDAP JSContact profile, and made that
+      reference informative (Issue #20)
+   -  Made the Address "countryCode" member mandatory, removed Address
+      "full" from the profile properties, limited the number of each
+      AddressComponent kind, and made the order of street lines
+      significant (Issue #19)
+   -  Restricted the internationalized form to US-ASCII and required RPP
       servers to support at least one localization, with additional
       localizations subject to server policy (Issue #6)
-   -  Made the Address "countryCode" member mandatory, limited the
-      number of each AddressComponent kind, and made the order of street
-      lines significant
    -  Allowed multiple email addresses and voice and fax numbers using
       sequentially numbered map keys (Issue #5)
-   -  Required the Phone "number" member to be a "tel" URI [RFC3966]
-      restricted to the EPP telephone number format, and added ABNF for
-      it
+   -  Required the Phone "number" member to be a "tel" URI (RFC 3966)
+      restricted to the Extensible Provisioning Protocol (EPP) telephone
+      number format, and added ABNF for it
+   -  Added the terms internationalized form and localized form
+   -  Permitted the "@type" member on every JSContact object and
+      corrected the Organization member to "name"
+   -  Made the Card "kind" member optional
+   -  Converted the profile properties table into a list using the RFC
+      10050 field names
+   -  Referenced RFC 8605 for the "contact-uri" map key
+
+8.2.  Version 00 to 01
+
+   -  Fixed duplicate text (Issue #14)
 
 9.  References
 

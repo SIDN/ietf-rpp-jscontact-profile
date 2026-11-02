@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-01 (editorial)" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
+<rfc version="3" ipr="trust200902" docName="draft-wullink-rpp-jscontact-profile-02" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" tocDepth="4">
 
 <front>
-<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-01 (editorial)" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
+<title abbrev="JSContact Profile for RPP">JSContact Profile for RESTful Provisioning Protocol (RPP)</title><seriesInfo value="draft-wullink-rpp-jscontact-profile-02" stream="IETF" status="standard" name="Internet-Draft"></seriesInfo>
 <author initials="M." surname="Wullink" fullname="Maarten Wullink"><organization>SIDN Labs</organization><address><postal><street></street>
 </postal><email>maarten.wullink@sidn.nl</email>
 <uri>https://sidn.nl/</uri>
 </address></author><author initials="P." surname="Kowalik" fullname="Pawel Kowalik"><organization>DENIC</organization><address><postal><street></street>
 </postal><email>pawel.kowalik@denic.de</email>
 <uri>https://denic.de/</uri>
-</address></author><date year="2026" month="July" day="6"></date>
+</address></author><date year="2026" month="November" day="2"></date>
 <area>Internet</area>
 <workgroup>Network Working Group</workgroup>
+<keyword>RPP</keyword>
+<keyword>JSContact</keyword>
+<keyword>contact</keyword>
+<keyword>provisioning</keyword>
 
 <abstract>
-<t>This document defines a JSContact usage profile, conforming to the rules described in <xref target="RFC10050"></xref>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <xref target="RFC9982"></xref> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
+<t>This document defines a JSContact usage profile, conforming to the rules described in RFC 10050, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in RFC 9982 can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.</t>
 </abstract>
 
 </front>
@@ -46,10 +50,12 @@ contact representation, but with profiles suited to their respective roles.</t>
 <t>URL - A Uniform Resource Locator as defined in <xref target="RFC3986"></xref>.</t>
 <t>RPP client - An HTTP user agent performing an RPP request.</t>
 <t>RPP server - An HTTP server responsible for processing requests and returning results in any supported media type.</t>
+<t>Internationalized form - The representation of contact information in the Card members outside the <tt>&quot;localizations&quot;</tt> map.</t>
+<t>Localized form - A representation of contact information placed in the <tt>&quot;localizations&quot;</tt> map, keyed by a language tag.</t>
 </section>
 
 <section anchor="conventions-used-in-this-document"><name>Conventions Used in This Document</name>
-<t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,&quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this document are to be interpreted as described in <xref target="RFC2119"></xref>.</t>
+<t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;, &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this document are to be interpreted as described in <xref target="RFC2119"></xref>.</t>
 </section>
 
 <section anchor="using-jscontact-in-rpp"><name>Using JSContact in RPP</name>
@@ -89,6 +95,8 @@ the JSContact specification <xref target="RFC9982"></xref>.</t>
 <section anchor="addresses"><name>Addresses</name>
 <t>Other than the optional <tt>&quot;@type&quot;</tt> member, the Address type MUST include only the <tt>&quot;components&quot;</tt> and <tt>&quot;countryCode&quot;</tt> members.</t>
 <t>Other than the optional <tt>&quot;@type&quot;</tt> member, the AddressComponent type MUST include only the <tt>&quot;kind&quot;</tt> and <tt>&quot;value&quot;</tt> members. The <tt>&quot;kind&quot;</tt> member value MUST be one of <tt>&quot;name&quot;</tt>, <tt>&quot;locality&quot;</tt>, <tt>&quot;region&quot;</tt>, or <tt>&quot;postcode&quot;</tt>.</t>
+<t>The Address type MUST include the <tt>&quot;countryCode&quot;</tt> member. The <tt>&quot;components&quot;</tt> member MUST contain exactly one <tt>&quot;locality&quot;</tt> component, at most one <tt>&quot;region&quot;</tt> component, and at most one <tt>&quot;postcode&quot;</tt> component.</t>
+<t>The <tt>&quot;name&quot;</tt> components represent street lines. The server MAY constrain the maximum number of <tt>&quot;name&quot;</tt> components supported. Their order in the <tt>&quot;components&quot;</tt> array is significant and MUST be preserved.</t>
 <t>When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <tt>&quot;localizations&quot;</tt> map keyed by an appropriate <xref target="BCP47"></xref> language tag.</t>
 </section>
 
@@ -102,6 +110,26 @@ the JSContact specification <xref target="RFC9982"></xref>.</t>
 <tt>&quot;voice&quot;</tt> or <tt>&quot;fax&quot;</tt> keys, and the value associated with each key MUST be
 <tt>true</tt>. When the <tt>&quot;features&quot;</tt> member is absent, the phone number is assumed to
 be a voice number.</t>
+<t>The <tt>&quot;number&quot;</tt> member value MUST be a <tt>&quot;tel&quot;</tt> URI <xref target="RFC3966"></xref> conforming to
+the <tt>rpp-telephone-uri</tt> rule in <xref target="fig-tel-abnf"></xref>. This rule restricts the
+<xref target="RFC3966"></xref> <tt>global-number</tt> to the telephone number format of the <tt>e164</tt> type in Section 2.5 of <xref target="RFC5733"></xref>: a leading <tt>&quot;+&quot;</tt>, a country code of one to three digits, a <tt>&quot;.&quot;</tt>, and a subscriber number of up to 14 digits, optionally followed by an <tt>&quot;ext&quot;</tt> parameter carrying one or more digits. The total number of digits in the country code and subscriber number MUST NOT exceed 15. Local
+numbers, other visual separators, and other <xref target="RFC3966"></xref> parameters (e.g., <tt>&quot;isub&quot;</tt> and <tt>&quot;phone-context&quot;</tt>) MUST NOT be used.</t>
+<t>The grammar uses ABNF <xref target="RFC5234"></xref>. <tt>&quot;DIGIT&quot;</tt> is defined in <xref target="RFC5234"></xref>.</t>
+<figure anchor="fig-tel-abnf"><name>ABNF for the Phone number member
+</name>
+<sourcecode type="abnf"><![CDATA[rpp-telephone-uri        = "tel:" rpp-global-number
+                           ; restricts telephone-uri [RFC3966]
+rpp-global-number        = rpp-global-number-digits [ rpp-extension ]
+                           ; restricts global-number [RFC3966]
+rpp-global-number-digits = "+" 1*3DIGIT "." 1*14DIGIT
+                           ; restricts global-number-digits [RFC3966]
+rpp-extension            = ";ext=" 1*DIGIT
+                           ; restricts extension [RFC3966]
+]]></sourcecode>
+</figure>
+<t>Examples of valid values are <tt>&quot;tel:+49.6215550100&quot;</tt> and
+<tt>&quot;tel:+49.6215550100;ext=123&quot;</tt>. An RPP server MUST reject a Phone whose
+<tt>&quot;number&quot;</tt> member value does not conform to this format.</t>
 </section>
 
 <section anchor="links"><name>Links</name>
@@ -115,26 +143,24 @@ When the &quot;kind&quot; member is present, its value MUST be &quot;contact&quo
 <ul spacing="compact">
 <li>&quot;org&quot; in the &quot;organizations&quot; map for a single preferred organization.</li>
 <li>&quot;addr&quot; in the &quot;addresses&quot; map for a single preferred postal address.</li>
-<li>&quot;email&quot; in the &quot;emails&quot; map for the preferred email address.
-</li>
-<li>&quot;voice&quot; in the &quot;phones&quot; map for the preferred voice number.
-</li>
-<li>&quot;fax&quot; in the &quot;phones&quot; map for the preferred fax number.
-</li>
+<li>&quot;email&quot; in the &quot;emails&quot; map for the preferred email address.</li>
+<li>&quot;voice&quot; in the &quot;phones&quot; map for the preferred voice number.</li>
+<li>&quot;fax&quot; in the &quot;phones&quot; map for the preferred fax number.</li>
 <li>&quot;url&quot; in the &quot;links&quot; map for a preferred contact URL; the &quot;kind&quot; member of
 the Link object MUST NOT be set.</li>
 <li>&quot;contact-uri&quot; in the &quot;links&quot; map for a contact URI as defined in <xref target="RFC8605"></xref>;
 the &quot;kind&quot; member of the Link object MUST be set to &quot;contact&quot;.</li>
 </ul>
-<t>When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
-the predefined map key, while the localized version MUST be placed in the &quot;localizations&quot; map as described in <xref target="localizations"></xref>.</t>
+<t>When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under the predefined map key, while the localized version MUST be placed in the &quot;localizations&quot; map as described in <xref target="localizations"></xref>.</t>
+<t>Keys MUST be of the form <tt>&quot;&lt;predefined key&gt;-&lt;sequential number&gt;&quot;</tt> for any additional entry in the <tt>&quot;emails&quot;</tt> or <tt>&quot;phones&quot;</tt> map, where the sequential number is a decimal integer starting at 1. For example, a <tt>&quot;phones&quot;</tt> map containing three voice numbers contains the keys <tt>&quot;voice&quot;</tt>, <tt>&quot;voice-1&quot;</tt>, and <tt>&quot;voice-2&quot;</tt>. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps.</t>
 </section>
 
 <section anchor="localizations"><name>Localizations</name>
 <t>If present, localized variants of name, organization, postal address, and email MUST be added to the &quot;localizations&quot; map. RPP implementations MUST
 expand all localizations, meaning a nested PatchObject key of the form &quot;{key1}/{key2}/.../{keyN}&quot; MUST NOT be used.</t>
-<t>The number of provided localizations MUST NOT exceed the number of languages supported by the RPP server. The language of each localization MUST be indicated by a <xref target="BCP47"></xref> language tag as the key in the &quot;localizations&quot; map.</t>
-<t>The following example of a Card includes a localized version of the postal address:</t>
+<t>The internationalized form MUST contain only characters that can be represented in the 7-bit US-ASCII character set <xref target="RFC20"></xref>. This applies to the <tt>&quot;full&quot;</tt> member of Name, the <tt>&quot;name&quot;</tt> member of Organization, the <tt>&quot;value&quot;</tt> member of AddressComponent, and the <tt>&quot;address&quot;</tt> member of EmailAddress. A localized form MAY contain any character permitted by <xref target="RFC9982"></xref>. When contact information is available only in a form containing non-ASCII characters, the RPP client MUST provide a US-ASCII transliteration as the internationalized form. An RPP server MUST reject a Card whose internationalized form contains characters outside the US-ASCII character set.</t>
+<t>An RPP server MUST support at least one localization per Card. An RPP server MAY support more localizations, as determined by server policy. An RPP server MUST reject a Card that contains more localizations than it supports. The language of each localization MUST be indicated by a <xref target="BCP47"></xref> language tag as the key in the &quot;localizations&quot; map.</t>
+<t>The following example of a Card includes two email addresses, two voice numbers, a fax number, and a localized version of the postal address:</t>
 <figure><name>Example of handling localizations in JSContact
 </name>
 <sourcecode type="json"><![CDATA[{
@@ -156,6 +182,23 @@ expand all localizations, meaning a nested PatchObject key of the form &quot;{ke
         { "kind": "postcode", "value": "67067" }
       ],
       "countryCode": "DE"
+    }
+  },
+  "emails": {
+    "email":   { "address": "joe.user@example.com" },
+    "email-1": { "address": "joe@example.net" }
+  },
+  "phones": {
+    "voice": {
+      "features": { "voice": true },
+      "number": "tel:+49.6215550100"
+    },
+    "voice-1": {
+      "number": "tel:+49.6215550101;ext=1234"
+    },
+    "fax": {
+      "features": { "fax": true },
+      "number": "tel:+49.6215550199"
     }
   },
   "localizations": {
@@ -210,7 +253,8 @@ Restricted Attributes: mandatory</t>
 Property Context: Card</t>
 </li>
 <li><t>Property Name: countryCode<br />
-Property Context: Address</t>
+Property Context: Address<br />
+Restricted Attributes: mandatory</t>
 </li>
 <li><t>Property Name: components<br />
 Property Context: Address</t>
@@ -265,7 +309,7 @@ is therefore not listed above.</t>
 <section anchor="jscontact-profile-registry"><name>JSContact Profile Registry</name>
 <t>IANA is requested to register the following entry in the &quot;JSContact Profile&quot; registry <xref target="RFC10050"></xref>:</t>
 <t>Name: rpp<br />
-Version: 1<br />
+Version: 1.0<br />
 Reference: <xref target="profile-properties"></xref> of this document</t>
 <t>TODO</t>
 </section>
@@ -283,14 +327,40 @@ expanded localizations.</t>
 </section>
 
 <section anchor="change-history"><name>Change History</name>
+<t>RFC Editor: please remove this section before publication.</t>
+
+<section anchor="version-01-to-02"><name>Version 01 to 02</name>
+
+<ul spacing="compact">
+<li>Replaced the reference to draft-ietf-calext-jscontact-profiles with RFC 10050</li>
+<li>Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP profile a
+subset of the RDAP JSContact profile, and made that reference informative
+(Issue #20)</li>
+<li>Made the Address <tt>&quot;countryCode&quot;</tt> member mandatory, removed Address <tt>&quot;full&quot;</tt>
+from the profile properties, limited the number of each AddressComponent
+kind, and made the order of street lines significant (Issue #19)</li>
+<li>Restricted the internationalized form to US-ASCII and required RPP servers to
+support at least one localization, with additional localizations subject to
+server policy (Issue #6)</li>
+<li>Allowed multiple email addresses and voice and fax numbers using sequentially
+numbered map keys (Issue #5)</li>
+<li>Required the Phone <tt>&quot;number&quot;</tt> member to be a <tt>&quot;tel&quot;</tt> URI (RFC 3966)
+restricted to the Extensible Provisioning Protocol (EPP) telephone number
+format, and added ABNF for it</li>
+<li>Added the terms internationalized form and localized form</li>
+<li>Permitted the <tt>&quot;@type&quot;</tt> member on every JSContact object and corrected the
+Organization member to <tt>&quot;name&quot;</tt></li>
+<li>Made the Card <tt>&quot;kind&quot;</tt> member optional</li>
+<li>Converted the profile properties table into a list using the RFC 10050 field
+names</li>
+<li>Referenced RFC 8605 for the <tt>&quot;contact-uri&quot;</tt> map key</li>
+</ul>
+</section>
 
 <section anchor="version-00-to-01"><name>Version 00 to 01</name>
 
 <ul spacing="compact">
-<li>Fixed duplicate text ( Issue #14)</li>
-<li>Aligned with draft-ietf-regext-rdap-jscontact-27</li>
-<li>Allowed the Address <tt>&quot;countryCode&quot;</tt> member and removed Address <tt>&quot;full&quot;</tt> from the
-profile properties (Issue #19)</li>
+<li>Fixed duplicate text (Issue #14)</li>
 </ul>
 </section>
 </section>
@@ -302,14 +372,18 @@ profile properties (Issue #19)</li>
 <references><name>Normative References</name>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml9/reference.BCP.47.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.10050.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.20.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3966.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5234.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9553.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9982.xml"/>
 </references>
 <references><name>Informative References</name>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-regext-rdap-jscontact.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5733.xml"/>
 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8605.xml"/>
 </references>
 </references>
