@@ -380,6 +380,9 @@ Table of Contents
    Section 5.1.  The field names are those defined in [RFC10050].  Entry
    fields with empty values are omitted:
 
+   -  Property Name: version
+      Property Context: Card
+
    -  Property Name: language
       Property Context: Card
 
@@ -451,8 +454,8 @@ Table of Contents
    The "@type" member is permitted on every JSContact object in this
    profile and is therefore not listed above.
 
-   Client validation MUST return an error if any JSContact properties
-   other than those listed above are present.
+   An RPP server MUST reject a Card that contains a JSContact property
+   not listed in this section.
 
 5.  IANA Considerations
 
@@ -509,6 +512,9 @@ Table of Contents
    -  Converted the profile properties table into a list using the RFC
       10050 field names
    -  Referenced RFC 8605 for the "contact-uri" map key
+   -  Added the Card "version" member to the profile properties
+   -  Required RPP servers, instead of client validation, to reject a
+      Card containing properties outside the profile
 
 8.2.  Version 00 to 01
 

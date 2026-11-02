@@ -269,6 +269,9 @@ registered in the JSContact Profile registry as described in
 
 <!-- TODO: update Restricted Attributes, for RPP a lot more properties are restricted than in the list below -->
 
+- Property Name: version\
+  Property Context: Card
+
 - Property Name: language\
   Property Context: Card
 
@@ -340,7 +343,7 @@ registered in the JSContact Profile registry as described in
 The `"@type"` member is permitted on every JSContact object in this profile and
 is therefore not listed above.
 
-Client validation MUST return an error if any JSContact properties other than those listed above are present.
+An RPP server MUST reject a Card that contains a JSContact property not listed in this section.
 
 # IANA Considerations
 
@@ -394,6 +397,9 @@ RFC Editor: please remove this section before publication.
 - Converted the profile properties table into a list using the RFC 10050 field
   names
 - Referenced RFC 8605 for the `"contact-uri"` map key
+- Added the Card `"version"` member to the profile properties
+- Required RPP servers, instead of client validation, to reject a Card
+  containing properties outside the profile
 
 ## Version 00 to 01
 

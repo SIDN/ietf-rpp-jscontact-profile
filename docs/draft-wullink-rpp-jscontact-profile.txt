@@ -87,7 +87,7 @@ Table of Contents
        4.1.10. Map Keys  . . . . . . . . . . . . . . . . . . . . . .   6
        4.1.11. Localizations . . . . . . . . . . . . . . . . . . . .   7
        4.1.12. Profile Properties  . . . . . . . . . . . . . . . . .   9
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
      5.1.  JSContact Profile Registry  . . . . . . . . . . . . . . .  11
    6.  Internationalization Considerations . . . . . . . . . . . . .  11
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
@@ -97,7 +97,7 @@ Table of Contents
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  13
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  13
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  14
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  14
 
 
@@ -470,6 +470,9 @@ Internet-Draft          JSContact Profile for RPP          November 2026
    Section 5.1.  The field names are those defined in [RFC10050].  Entry
    fields with empty values are omitted:
 
+   -  Property Name: version
+      Property Context: Card
+
    -  Property Name: language
       Property Context: Card
 
@@ -494,9 +497,6 @@ Internet-Draft          JSContact Profile for RPP          November 2026
    -  Property Name: addresses
       Property Context: Card
 
-   -  Property Name: countryCode
-      Property Context: Address
-      Restricted Attributes: mandatory
 
 
 
@@ -505,6 +505,10 @@ Wullink & Kowalik          Expires 6 May 2027                   [Page 9]
 
 Internet-Draft          JSContact Profile for RPP          November 2026
 
+
+   -  Property Name: countryCode
+      Property Context: Address
+      Restricted Attributes: mandatory
 
    -  Property Name: components
       Property Context: Address
@@ -549,10 +553,6 @@ Internet-Draft          JSContact Profile for RPP          November 2026
    The "@type" member is permitted on every JSContact object in this
    profile and is therefore not listed above.
 
-   Client validation MUST return an error if any JSContact properties
-   other than those listed above are present.
-
-5.  IANA Considerations
 
 
 
@@ -561,6 +561,11 @@ Wullink & Kowalik          Expires 6 May 2027                  [Page 10]
 
 Internet-Draft          JSContact Profile for RPP          November 2026
 
+
+   An RPP server MUST reject a Card that contains a JSContact property
+   not listed in this section.
+
+5.  IANA Considerations
 
 5.1.  JSContact Profile Registry
 
@@ -605,11 +610,6 @@ Internet-Draft          JSContact Profile for RPP          November 2026
       localizations subject to server policy (Issue #6)
    -  Allowed multiple email addresses and voice and fax numbers using
       sequentially numbered map keys (Issue #5)
-   -  Required the Phone "number" member to be a "tel" URI (RFC 3966)
-      restricted to the Extensible Provisioning Protocol (EPP) telephone
-      number format, and added ABNF for it
-   -  Added the terms internationalized form and localized form
-
 
 
 
@@ -618,12 +618,19 @@ Wullink & Kowalik          Expires 6 May 2027                  [Page 11]
 Internet-Draft          JSContact Profile for RPP          November 2026
 
 
+   -  Required the Phone "number" member to be a "tel" URI (RFC 3966)
+      restricted to the Extensible Provisioning Protocol (EPP) telephone
+      number format, and added ABNF for it
+   -  Added the terms internationalized form and localized form
    -  Permitted the "@type" member on every JSContact object and
       corrected the Organization member to "name"
    -  Made the Card "kind" member optional
    -  Converted the profile properties table into a list using the RFC
       10050 field names
    -  Referenced RFC 8605 for the "contact-uri" map key
+   -  Added the Card "version" member to the profile properties
+   -  Required RPP servers, instead of client validation, to reject a
+      Card containing properties outside the profile
 
 8.2.  Version 00 to 01
 
@@ -659,13 +666,6 @@ Internet-Draft          JSContact Profile for RPP          November 2026
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC3966]  Schulzrinne, H., "The tel URI for Telephone Numbers",
-              RFC 3966, DOI 10.17487/RFC3966, December 2004,
-              <https://www.rfc-editor.org/info/rfc3966>.
-
-
-
-
 
 
 
@@ -673,6 +673,10 @@ Wullink & Kowalik          Expires 6 May 2027                  [Page 12]
 
 Internet-Draft          JSContact Profile for RPP          November 2026
 
+
+   [RFC3966]  Schulzrinne, H., "The tel URI for Telephone Numbers",
+              RFC 3966, DOI 10.17487/RFC3966, December 2004,
+              <https://www.rfc-editor.org/info/rfc3966>.
 
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
@@ -718,10 +722,6 @@ Internet-Draft          JSContact Profile for RPP          November 2026
               (RDAP)", RFC 8605, DOI 10.17487/RFC8605, May 2019,
               <https://www.rfc-editor.org/info/rfc8605>.
 
-Acknowledgements
-
-   TODO
-
 
 
 
@@ -729,6 +729,10 @@ Wullink & Kowalik          Expires 6 May 2027                  [Page 13]
 
 Internet-Draft          JSContact Profile for RPP          November 2026
 
+
+Acknowledgements
+
+   TODO
 
 Authors' Addresses
 
@@ -742,10 +746,6 @@ Authors' Addresses
    DENIC
    Email: pawel.kowalik@denic.de
    URI:   https://denic.de/
-
-
-
-
 
 
 

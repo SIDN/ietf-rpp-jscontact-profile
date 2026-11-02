@@ -228,6 +228,9 @@ registered in the JSContact Profile registry as described in
 <xref target="RFC10050"></xref>. Entry fields with empty values are omitted:</t>
 
 <ul>
+<li><t>Property Name: version<br />
+Property Context: Card</t>
+</li>
 <li><t>Property Name: language<br />
 Property Context: Card</t>
 </li>
@@ -299,7 +302,7 @@ Restricted PatchObject: yes</t>
 </ul>
 <t>The <tt>&quot;@type&quot;</tt> member is permitted on every JSContact object in this profile and
 is therefore not listed above.</t>
-<t>Client validation MUST return an error if any JSContact properties other than those listed above are present.</t>
+<t>An RPP server MUST reject a Card that contains a JSContact property not listed in this section.</t>
 </section>
 </section>
 </section>
@@ -354,6 +357,9 @@ Organization member to <tt>&quot;name&quot;</tt></li>
 <li>Converted the profile properties table into a list using the RFC 10050 field
 names</li>
 <li>Referenced RFC 8605 for the <tt>&quot;contact-uri&quot;</tt> map key</li>
+<li>Added the Card <tt>&quot;version&quot;</tt> member to the profile properties</li>
+<li>Required RPP servers, instead of client validation, to reject a Card
+containing properties outside the profile</li>
 </ul>
 </section>
 
