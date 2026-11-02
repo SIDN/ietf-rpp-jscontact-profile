@@ -1262,7 +1262,7 @@ li > p:last-of-type:only-child {
 <h1 id="title">JSContact Profile for RESTful Provisioning Protocol (RPP)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines a JSContact usage profile, conforming to the rules described in <span>[<a href="#I-D.ietf-calext-jscontact-profiles" class="cite xref">I-D.ietf-calext-jscontact-profiles</a>]</span>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <span>[<a href="#RFC9982" class="cite xref">RFC9982</a>]</span> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines a JSContact usage profile, conforming to the rules described in <span>[<a href="#RFC10050" class="cite xref">RFC10050</a>]</span>, for the RESTful Provisioning Protocol (RPP). The JSContact Profile for RPP specifies how the JSContact format defined in <span>[<a href="#RFC9982" class="cite xref">RFC9982</a>]</span> can be used as a standardized representation of contact information within RPP operations, enabling interoperability and consistency across RPP implementations that manage contact data.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1395,7 +1395,15 @@ li > p:last-of-type:only-child {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
@@ -1468,7 +1476,7 @@ capabilities are not optimized for interoperable use in RPP payloads. This
 document therefore defines a usage profile for JSContact that simplifies
 implementation for both RPP clients and RPP servers.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">The JSContact profile for RPP is compliant with the rules described in
-<span>[<a href="#I-D.ietf-calext-jscontact-profiles" class="cite xref">I-D.ietf-calext-jscontact-profiles</a>]</span>. The profile properties are formally
+<span>[<a href="#RFC10050" class="cite xref">RFC10050</a>]</span>. The profile properties are formally
 listed in <a href="#profile-properties" class="auto internal xref">Section 4.1.12</a>. All types mentioned in this section refer to
 the JSContact specification <span>[<a href="#RFC9982" class="cite xref">RFC9982</a>]</span>.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <div id="version">
@@ -1476,7 +1484,7 @@ the JSContact specification <span>[<a href="#RFC9982" class="cite xref">RFC9982<
           <h4 id="name-version">
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-version" class="section-name selfRef">Version</a>
           </h4>
-<p id="section-4.1.1-1">The Card "version" member value MUST be "2.0".<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-1">The Card <code>"version"</code> member value MUST be <code>"2.0"</code>.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="kind">
@@ -1484,8 +1492,8 @@ the JSContact specification <span>[<a href="#RFC9982" class="cite xref">RFC9982<
           <h4 id="name-kind">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-kind" class="section-name selfRef">Kind</a>
           </h4>
-<p id="section-4.1.2-1">The Card "kind" member value MUST be "individual" (default) or "org" to
-represent an individual or an organization, respectively.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">If present, the Card <code>"kind"</code> member value MUST be <code>"individual"</code> (default) or
+<code>"org"</code> to represent an individual or an organization, respectively.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="language">
@@ -1493,8 +1501,8 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-language">
 <a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-language" class="section-name selfRef">Language</a>
           </h4>
-<p id="section-4.1.3-1">The Card "language" member SHOULD be set when localizations are specified
-(i.e., when the "localizations" member is present and non-null).<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.3-1">The Card <code>"language"</code> member SHOULD be set when localizations are specified
+(i.e., when the <code>"localizations"</code> member is present and non-empty).<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="name">
@@ -1502,7 +1510,7 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-name">
 <a href="#section-4.1.4" class="section-number selfRef">4.1.4. </a><a href="#name-name" class="section-name selfRef">Name</a>
           </h4>
-<p id="section-4.1.4-1">The Card "name" member MUST include only the "full" member and MUST NOT include the "components" member.<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.4-1">Other than the optional <code>"@type"</code> member, the Name type MUST include only the <code>"full"</code> member.<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="organizations">
@@ -1510,7 +1518,7 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-organizations">
 <a href="#section-4.1.5" class="section-number selfRef">4.1.5. </a><a href="#name-organizations" class="section-name selfRef">Organizations</a>
           </h4>
-<p id="section-4.1.5-1">The Organization type MUST include only the "org" member.<a href="#section-4.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.5-1">Other than the optional <code>"@type"</code> member, the Organization type MUST include only the <code>"name"</code> member.<a href="#section-4.1.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="addresses">
@@ -1518,9 +1526,9 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-addresses">
 <a href="#section-4.1.6" class="section-number selfRef">4.1.6. </a><a href="#name-addresses" class="section-name selfRef">Addresses</a>
           </h4>
-<p id="section-4.1.6-1">The Address type MUST only use the "components" member.<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.6-2">The AddressComponent MUST include only the "kind" and "value" members. The "kind" member value MUST only use "name", "locality", "region", or "postcode".<a href="#section-4.1.6-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.6-3">When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <code>localizations</code> map keyed by an appropriate <span>[<a href="#BCP47" class="cite xref">BCP47</a>]</span> language tag.<a href="#section-4.1.6-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-1">Other than the optional <code>"@type"</code> member, the Address type MUST include only the <code>"components"</code> and <code>"countryCode"</code> members.<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-2">Other than the optional <code>"@type"</code> member, the AddressComponent type MUST include only the <code>"kind"</code> and <code>"value"</code> members. The <code>"kind"</code> member value MUST be one of <code>"name"</code>, <code>"locality"</code>, <code>"region"</code>, or <code>"postcode"</code>.<a href="#section-4.1.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.6-3">When both an internationalized and a localized version of an address are used, the localized version MUST be placed in the <code>"localizations"</code> map keyed by an appropriate <span>[<a href="#BCP47" class="cite xref">BCP47</a>]</span> language tag.<a href="#section-4.1.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="emails">
@@ -1528,7 +1536,7 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-emails">
 <a href="#section-4.1.7" class="section-number selfRef">4.1.7. </a><a href="#name-emails" class="section-name selfRef">Emails</a>
           </h4>
-<p id="section-4.1.7-1">The EmailAddress type MUST include only the "address" member.<a href="#section-4.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.7-1">Other than the optional <code>"@type"</code> member, the EmailAddress type MUST include only the <code>"address"</code> member.<a href="#section-4.1.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="phones">
@@ -1536,10 +1544,11 @@ represent an individual or an organization, respectively.<a href="#section-4.1.2
           <h4 id="name-phones">
 <a href="#section-4.1.8" class="section-number selfRef">4.1.8. </a><a href="#name-phones" class="section-name selfRef">Phones</a>
           </h4>
-<p id="section-4.1.8-1">The Phone type MUST include the "number" member and MAY include the "features"
-member. When the "features" member is present, its values MUST be "voice" or
-"fax". When the "features" member is absent, the phone number is assumed to be
-a voice number.<a href="#section-4.1.8-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.8-1">The Phone type MUST include the <code>"number"</code> member and MAY include the
+<code>"features"</code> member. If present, the <code>"features"</code> member MUST contain only the
+<code>"voice"</code> or <code>"fax"</code> keys, and the value associated with each key MUST be
+<code>true</code>. When the <code>"features"</code> member is absent, the phone number is assumed to
+be a voice number.<a href="#section-4.1.8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="links">
@@ -1571,8 +1580,8 @@ When the "kind" member is present, its value MUST be "contact".<a href="#section
             <li class="compact" id="section-4.1.10-2.6">"url" in the "links" map for a preferred contact URL; the "kind" member of
 the Link object MUST NOT be set.<a href="#section-4.1.10-2.6" class="pilcrow">¶</a>
 </li>
-            <li class="compact" id="section-4.1.10-2.7">"contact-uri" in the "links" map for a contact URI; the "kind" member of
-the Link object MUST be set to "contact".<a href="#section-4.1.10-2.7" class="pilcrow">¶</a>
+            <li class="compact" id="section-4.1.10-2.7">"contact-uri" in the "links" map for a contact URI as defined in <span>[<a href="#RFC8605" class="cite xref">RFC8605</a>]</span>;
+the "kind" member of the Link object MUST be set to "contact".<a href="#section-4.1.10-2.7" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-4.1.10-3">When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under
@@ -1639,148 +1648,101 @@ expand all localizations, meaning a nested PatchObject key of the form "{key1}/{
           <h4 id="name-profile-properties">
 <a href="#section-4.1.12" class="section-number selfRef">4.1.12. </a><a href="#name-profile-properties" class="section-name selfRef">Profile Properties</a>
           </h4>
-<p id="section-4.1.12-1">The properties of the JSContact profile for RPP registered in the JSContact
-Profile registry as described in <a href="#jscontact-profile-registry" class="auto internal xref">Section 5.1</a> are:<a href="#section-4.1.12-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.12-2">| Property    | Context          | Restricted  | Restricted Enum                          |<a href="#section-4.1.12-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-1">
-            <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1"></th>
-                <th class="text-left" rowspan="1" colspan="1"></th>
-                <th class="text-left" rowspan="1" colspan="1">Attributes</th>
-                <th class="text-left" rowspan="1" colspan="1">Values</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">language</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">kind</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1">individual, org</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">name</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">full</td>
-                <td class="text-left" rowspan="1" colspan="1">Name</td>
-                <td class="text-left" rowspan="1" colspan="1">mandatory</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">organizations</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">name</td>
-                <td class="text-left" rowspan="1" colspan="1">Organization</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">addresses</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">full</td>
-                <td class="text-left" rowspan="1" colspan="1">Address</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">countryCode</td>
-                <td class="text-left" rowspan="1" colspan="1">Address</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">components</td>
-                <td class="text-left" rowspan="1" colspan="1">Address</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">kind</td>
-                <td class="text-left" rowspan="1" colspan="1">AddressComponent</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1">name, locality, region, postcode</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">value</td>
-                <td class="text-left" rowspan="1" colspan="1">AddressComponent</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">emails</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">address</td>
-                <td class="text-left" rowspan="1" colspan="1">EmailAddress</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">phones</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">features</td>
-                <td class="text-left" rowspan="1" colspan="1">Phone</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1">voice, fax</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">number</td>
-                <td class="text-left" rowspan="1" colspan="1">Phone</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">links</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">kind</td>
-                <td class="text-left" rowspan="1" colspan="1">Link</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1">contact</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">uri</td>
-                <td class="text-left" rowspan="1" colspan="1">Link</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">localizations</td>
-                <td class="text-left" rowspan="1" colspan="1">Card</td>
-                <td class="text-left" rowspan="1" colspan="1"></td>
-                <td class="text-left" rowspan="1" colspan="1">yes</td>
-              </tr>
-            </tbody>
-          </table>
+<p id="section-4.1.12-1">The following entries define the properties of the JSContact profile for RPP
+registered in the JSContact Profile registry as described in
+<a href="#jscontact-profile-registry" class="auto internal xref">Section 5.1</a>. The field names are those defined in
+<span>[<a href="#RFC10050" class="cite xref">RFC10050</a>]</span>. Entry fields with empty values are omitted:<a href="#section-4.1.12-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.12-2.1">
+              <p id="section-4.1.12-2.1.1">Property Name: language<br>
+Property Context: Card<a href="#section-4.1.12-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.2">
+              <p id="section-4.1.12-2.2.1">Property Name: kind<br>
+Property Context: Card<br>
+Restricted Enum Values: individual, org<a href="#section-4.1.12-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.3">
+              <p id="section-4.1.12-2.3.1">Property Name: name<br>
+Property Context: Card<a href="#section-4.1.12-2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.4">
+              <p id="section-4.1.12-2.4.1">Property Name: full<br>
+Property Context: Name<br>
+Restricted Attributes: mandatory<a href="#section-4.1.12-2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.5">
+              <p id="section-4.1.12-2.5.1">Property Name: organizations<br>
+Property Context: Card<a href="#section-4.1.12-2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.6">
+              <p id="section-4.1.12-2.6.1">Property Name: name<br>
+Property Context: Organization<br>
+Restricted Attributes: mandatory<a href="#section-4.1.12-2.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.7">
+              <p id="section-4.1.12-2.7.1">Property Name: addresses<br>
+Property Context: Card<a href="#section-4.1.12-2.7.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.8">
+              <p id="section-4.1.12-2.8.1">Property Name: countryCode<br>
+Property Context: Address<a href="#section-4.1.12-2.8.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.9">
+              <p id="section-4.1.12-2.9.1">Property Name: components<br>
+Property Context: Address<a href="#section-4.1.12-2.9.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.10">
+              <p id="section-4.1.12-2.10.1">Property Name: kind<br>
+Property Context: AddressComponent<br>
+Restricted Enum Values: name, locality, region, postcode<a href="#section-4.1.12-2.10.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.11">
+              <p id="section-4.1.12-2.11.1">Property Name: value<br>
+Property Context: AddressComponent<a href="#section-4.1.12-2.11.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.12">
+              <p id="section-4.1.12-2.12.1">Property Name: emails<br>
+Property Context: Card<a href="#section-4.1.12-2.12.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.13">
+              <p id="section-4.1.12-2.13.1">Property Name: address<br>
+Property Context: EmailAddress<a href="#section-4.1.12-2.13.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.14">
+              <p id="section-4.1.12-2.14.1">Property Name: phones<br>
+Property Context: Card<a href="#section-4.1.12-2.14.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.15">
+              <p id="section-4.1.12-2.15.1">Property Name: features<br>
+Property Context: Phone<br>
+Restricted Enum Values: voice, fax<a href="#section-4.1.12-2.15.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.16">
+              <p id="section-4.1.12-2.16.1">Property Name: number<br>
+Property Context: Phone<a href="#section-4.1.12-2.16.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.17">
+              <p id="section-4.1.12-2.17.1">Property Name: links<br>
+Property Context: Card<a href="#section-4.1.12-2.17.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.18">
+              <p id="section-4.1.12-2.18.1">Property Name: kind<br>
+Property Context: Link<br>
+Restricted Enum Values: contact<a href="#section-4.1.12-2.18.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.19">
+              <p id="section-4.1.12-2.19.1">Property Name: uri<br>
+Property Context: Link<a href="#section-4.1.12-2.19.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.12-2.20">
+              <p id="section-4.1.12-2.20.1">Property Name: localizations<br>
+Property Context: Card<br>
+Restricted PatchObject: yes<a href="#section-4.1.12-2.20.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-4.1.12-3">The <code>"@type"</code> member is permitted on every JSContact object in this profile and
+is therefore not listed above.<a href="#section-4.1.12-3" class="pilcrow">¶</a></p>
 <p id="section-4.1.12-4">Client validation MUST return an error if any JSContact properties other than those listed above are present.<a href="#section-4.1.12-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1798,10 +1760,10 @@ Profile registry as described in <a href="#jscontact-profile-registry" class="au
         <h3 id="name-jscontact-profile-registry">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-jscontact-profile-registry" class="section-name selfRef">JSContact Profile Registry</a>
         </h3>
-<p id="section-5.1-1">IANA is requested to register the following entry in the "JSContact Profile" registry [I-D.ietf-calext-jscontact-profiles]:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Name: rpp
-Profile Version: 1.0
-Reference: This document<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">IANA is requested to register the following entry in the "JSContact Profile" registry <span>[<a href="#RFC10050" class="cite xref">RFC10050</a>]</span>:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Name: rpp<br>
+Version: 1<br>
+Reference: <a href="#profile-properties" class="auto internal xref">Section 4.1.12</a> of this document<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">TODO<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1820,7 +1782,10 @@ Reference: This document<a href="#section-5.1-2" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">TODO<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">RPP servers should impose appropriate limits on the size and complexity of
+JSContact objects received from RPP clients, including the number and size of
+expanded localizations.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">TODO<a href="#section-7-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="change-history">
@@ -1836,55 +1801,76 @@ Reference: This document<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-8.1-1.1">Fixed duplicate text ( Issue #14)<a href="#section-8.1-1.1" class="pilcrow">¶</a>
 </li>
+          <li class="compact" id="section-8.1-1.2">Aligned with draft-ietf-regext-rdap-jscontact-27<a href="#section-8.1-1.2" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-8.1-1.3">Allowed the Address <code>"countryCode"</code> member and removed Address <code>"full"</code> from the
+profile properties (Issue #19)<a href="#section-8.1-1.3" class="pilcrow">¶</a>
+</li>
         </ul>
 </section>
 </div>
 </section>
 </div>
 <section id="section-9">
-      <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="BCP47">[BCP47]</dt>
-      <dd>
+        <dd>
 <div class="refInstance">Best Current Practice 47, <span>&lt;<a href="https://www.rfc-editor.org/info/bcp47">https://www.rfc-editor.org/info/bcp47</a>&gt;</span>.<br><span>At the time of writing, this BCP comprises the following:</span>
 </div>
 <div class="refInstance" id="RFC4647">
-          <span class="refAuthor">Phillips, A., Ed.</span> and <span class="refAuthor">M. Davis, Ed.</span>, <span class="refTitle">"Matching of Language Tags"</span>, <span class="seriesInfo">BCP 47</span>, <span class="seriesInfo">RFC 4647</span>, <span class="seriesInfo">DOI 10.17487/RFC4647</span>, <time datetime="2006-09" class="refDate">September 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4647">https://www.rfc-editor.org/info/rfc4647</a>&gt;</span>. </div>
+            <span class="refAuthor">Phillips, A., Ed.</span> and <span class="refAuthor">M. Davis, Ed.</span>, <span class="refTitle">"Matching of Language Tags"</span>, <span class="seriesInfo">BCP 47</span>, <span class="seriesInfo">RFC 4647</span>, <span class="seriesInfo">DOI 10.17487/RFC4647</span>, <time datetime="2006-09" class="refDate">September 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4647">https://www.rfc-editor.org/info/rfc4647</a>&gt;</span>. </div>
 <div class="refInstance" id="RFC5646">
-          <span class="refAuthor">Phillips, A., Ed.</span> and <span class="refAuthor">M. Davis, Ed.</span>, <span class="refTitle">"Tags for Identifying Languages"</span>, <span class="seriesInfo">BCP 47</span>, <span class="seriesInfo">RFC 5646</span>, <span class="seriesInfo">DOI 10.17487/RFC5646</span>, <time datetime="2009-09" class="refDate">September 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5646">https://www.rfc-editor.org/info/rfc5646</a>&gt;</span>. </div>
+            <span class="refAuthor">Phillips, A., Ed.</span> and <span class="refAuthor">M. Davis, Ed.</span>, <span class="refTitle">"Tags for Identifying Languages"</span>, <span class="seriesInfo">BCP 47</span>, <span class="seriesInfo">RFC 5646</span>, <span class="seriesInfo">DOI 10.17487/RFC5646</span>, <time datetime="2009-09" class="refDate">September 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5646">https://www.rfc-editor.org/info/rfc5646</a>&gt;</span>. </div>
 </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-calext-jscontact-profiles">[I-D.ietf-calext-jscontact-profiles]</dt>
-      <dd>
-<span class="refAuthor">Stepanek, R.</span> and <span class="refAuthor">M. Loffredo</span>, <span class="refTitle">"Protocol-Specific Profiles for JSContact"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-calext-jscontact-profiles-15</span>, <time datetime="2026-07-27" class="refDate">27 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-calext-jscontact-profiles-15">https://datatracker.ietf.org/doc/html/draft-ietf-calext-jscontact-profiles-15</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-regext-rdap-jscontact">[I-D.ietf-regext-rdap-jscontact]</dt>
-      <dd>
-<span class="refAuthor">Loffredo, M.</span> and <span class="refAuthor">G. Brown</span>, <span class="refTitle">"Using JSContact in Registration Data Access Protocol (RDAP) JSON Responses"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-regext-rdap-jscontact-27</span>, <time datetime="2026-10-05" class="refDate">5 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-regext-rdap-jscontact-27">https://datatracker.ietf.org/doc/html/draft-ietf-regext-rdap-jscontact-27</a>&gt;</span>. </dd>
+<dt id="RFC10050">[RFC10050]</dt>
+        <dd>
+<span class="refAuthor">Stepanek, R.</span> and <span class="refAuthor">M. Loffredo</span>, <span class="refTitle">"Protocol-Specific Profiles for JSContact"</span>, <span class="seriesInfo">RFC 10050</span>, <span class="seriesInfo">DOI 10.17487/RFC10050</span>, <time datetime="2026-09" class="refDate">September 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc10050">https://www.rfc-editor.org/info/rfc10050</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3986">[RFC3986]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3986">https://www.rfc-editor.org/info/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9083">[RFC9083]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Hollenbeck, S.</span> and <span class="refAuthor">A. Newton</span>, <span class="refTitle">"JSON Responses for the Registration Data Access Protocol (RDAP)"</span>, <span class="seriesInfo">STD 95</span>, <span class="seriesInfo">RFC 9083</span>, <span class="seriesInfo">DOI 10.17487/RFC9083</span>, <time datetime="2021-06" class="refDate">June 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9083">https://www.rfc-editor.org/info/rfc9083</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9553">[RFC9553]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Stepanek, R.</span> and <span class="refAuthor">M. Loffredo</span>, <span class="refTitle">"JSContact: A JSON Representation of Contact Data"</span>, <span class="seriesInfo">RFC 9553</span>, <span class="seriesInfo">DOI 10.17487/RFC9553</span>, <time datetime="2024-05" class="refDate">May 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9553">https://www.rfc-editor.org/info/rfc9553</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9982">[RFC9982]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Stepanek, R.</span>, <span class="refTitle">"JSContact Version 2.0: A JSON Representation of Contact Data"</span>, <span class="seriesInfo">RFC 9982</span>, <span class="seriesInfo">DOI 10.17487/RFC9982</span>, <time datetime="2026-05" class="refDate">May 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9982">https://www.rfc-editor.org/info/rfc9982</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-regext-rdap-jscontact">[I-D.ietf-regext-rdap-jscontact]</dt>
+        <dd>
+<span class="refAuthor">Loffredo, M.</span> and <span class="refAuthor">G. Brown</span>, <span class="refTitle">"Using JSContact in Registration Data Access Protocol (RDAP) JSON Responses"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-regext-rdap-jscontact-27</span>, <time datetime="2026-10-05" class="refDate">5 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-regext-rdap-jscontact-27">https://datatracker.ietf.org/doc/html/draft-ietf-regext-rdap-jscontact-27</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8605">[RFC8605]</dt>
+      <dd>
+<span class="refAuthor">Hollenbeck, S.</span> and <span class="refAuthor">R. Carney</span>, <span class="refTitle">"vCard Format Extensions: ICANN Extensions for the Registration Data Access Protocol (RDAP)"</span>, <span class="seriesInfo">RFC 8605</span>, <span class="seriesInfo">DOI 10.17487/RFC8605</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8605">https://www.rfc-editor.org/info/rfc8605</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
 </section>
 <div id="acknowledgements">
 <section id="appendix-A">
