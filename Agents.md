@@ -246,6 +246,15 @@ Section-specific rules:
 - One requirement per sentence where practical, to enable conformance checklists.
 - Use **US English** spelling consistently throughout (policy and exceptions in
   Pre-Release Review → Check 3); use the serial (Oxford) comma (IETF default).
+- **ASCII only.** Write all text (prose, tables, examples, figures, Change
+  History) in US-ASCII. Non-ASCII characters are allowed **only** in
+  internationalized domain names (IDNs, U-label form), person names (e.g. in
+  `[[author]]` tables, Acknowledgements, or an example personal name), and
+  street names (e.g. in a localized example address), per RFC 7997. No typographic substitutes: use `"` and `'` instead of curly quotes,
+  `-` or `--` instead of en/em dashes, `...` instead of `…`, plain spaces
+  instead of non-breaking spaces. After every edit, check the draft with
+  `grep -nP '[^\x00-\x7F]' src/draft-wullink-rpp-jscontact-profile.md` and
+  confirm each hit falls under an allowed exception.
 - **Capitalization:** title case for the document title and section titles; keep
   term capitalization consistent.
 - **Figures** carry a `Figure:` caption and are referenced by number, not "the
@@ -459,6 +468,15 @@ placeholders `(None)` vs `None` vs `-`, title case in headings). A tool such as
 if available, but every candidate MUST be checked against the literal/quotation
 exceptions above before it is proposed.
 
+**Non-ASCII characters.** Run
+`grep -nP '[^\x00-\x7F]' src/draft-wullink-rpp-jscontact-profile.md` over the
+whole draft (including the title block, figures, and Changes History). Each hit
+is allowed only if it is part of an internationalized domain name (IDN), a
+person name, or a street name (see Writing Style → Tone and mechanics → ASCII only). Report every
+other hit as an `Sxx` finding with line number, character, and Unicode code
+point (e.g. U+2019, U+00DF), and propose an ASCII replacement (straight quotes,
+`-`/`--`, `...`, a transliteration).
+
 ### Check 4 — Whole-Document Consistency Scan
 
 Scan the full document for inconsistencies, including:
@@ -487,7 +505,7 @@ Scan the full document for inconsistencies, including:
   made stale by later changes), commented-out text, empty sections, IANA
   placeholders other than `TBDn`, and missing required sections (Security
   Considerations, Privacy Considerations where personal data is handled).
-- **Mechanics:** semicolons in prose, non-ASCII characters, trailing
+- **Mechanics:** semicolons in prose, non-ASCII characters (see Check 3), trailing
   whitespace, double spaces, missing blank lines before lists, example
   domains not using reserved names.
 

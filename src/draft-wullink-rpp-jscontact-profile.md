@@ -246,7 +246,7 @@ The following example of a Card includes two email addresses, two voice numbers,
       "addresses": {
         "addr": {
           "components": [
-            { "kind": "name",     "value": "Hauptstraße 1" },
+            { "kind": "name",     "value": "Hauptstrasse 1" },
             { "kind": "locality", "value": "Ludwigshafen am Rhein" },
             { "kind": "region",   "value": "Rheinland-Pfalz" },
             { "kind": "postcode", "value": "67067" }
