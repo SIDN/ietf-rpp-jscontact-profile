@@ -10,7 +10,7 @@ date = 2026-11-02
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-wullink-rpp-jscontact-profile-02"
+value = "draft-wullink-rpp-jscontact-profile-03 (editorial)"
 stream = "IETF"
 status = "standard"
 
@@ -372,6 +372,9 @@ TODO
 # Change History
 
 RFC Editor: please remove this section before publication.
+
+## Version 01 to 02
+
 
 ## Version 01 to 02
 

@@ -15,7 +15,7 @@
 <meta content="JSContact" name="keyword">
 <meta content="contact" name="keyword">
 <meta content="provisioning" name="keyword">
-<meta content="draft-wullink-rpp-jscontact-profile-02" name="ietf.draft">
+<meta content="draft-wullink-rpp-jscontact-profile-03 (editorial)" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.1
     Python 3.10.12
@@ -1241,7 +1241,7 @@ li > p:last-of-type:only-child {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-wullink-rpp-jscontact-profile-02</dd>
+<dd class="internet-draft">draft-wullink-rpp-jscontact-profile-03 (editorial)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2026-11-02" class="published">2 November 2026</time>
@@ -1397,7 +1397,10 @@ li > p:last-of-type:only-child {
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-version-01-to-02" class="internal xref">Version 01 to 02</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-version-00-to-01" class="internal xref">Version 00 to 01</a></p>
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-version-01-to-02-2" class="internal xref">Version 01 to 02</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-version-00-to-01" class="internal xref">Version 00 to 01</a></p>
 </li>
             </ul>
 </li>
@@ -1857,56 +1860,63 @@ expanded localizations.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <section id="section-8.1">
         <h3 id="name-version-01-to-02">
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-version-01-to-02" class="section-name selfRef">Version 01 to 02</a>
+      </h3>
+</section>
+</div>
+<div id="version-01-to-02-1">
+<section id="section-8.2">
+        <h3 id="name-version-01-to-02-2">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-version-01-to-02-2" class="section-name selfRef">Version 01 to 02</a>
         </h3>
 <ul class="compact">
-<li class="compact" id="section-8.1-1.1">Replaced the reference to draft-ietf-calext-jscontact-profiles with RFC 10050<a href="#section-8.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-8.2-1.1">Replaced the reference to draft-ietf-calext-jscontact-profiles with RFC 10050<a href="#section-8.2-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.2">Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP profile a
+          <li class="compact" id="section-8.2-1.2">Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP profile a
 subset of the RDAP JSContact profile, and made that reference informative
-(Issue #20)<a href="#section-8.1-1.2" class="pilcrow">¶</a>
+(Issue #20)<a href="#section-8.2-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.3">Made the Address <code>"countryCode"</code> member mandatory, removed Address <code>"full"</code>
+          <li class="compact" id="section-8.2-1.3">Made the Address <code>"countryCode"</code> member mandatory, removed Address <code>"full"</code>
 from the profile properties, limited the number of each AddressComponent
-kind, and made the order of street lines significant (Issue #19)<a href="#section-8.1-1.3" class="pilcrow">¶</a>
+kind, and made the order of street lines significant (Issue #19)<a href="#section-8.2-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.4">Restricted the internationalized form to US-ASCII and required RPP servers to
+          <li class="compact" id="section-8.2-1.4">Restricted the internationalized form to US-ASCII and required RPP servers to
 support at least one localization, with additional localizations subject to
-server policy (Issue #6)<a href="#section-8.1-1.4" class="pilcrow">¶</a>
+server policy (Issue #6)<a href="#section-8.2-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.5">Allowed multiple email addresses and voice and fax numbers using sequentially
-numbered map keys (Issue #5)<a href="#section-8.1-1.5" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.5">Allowed multiple email addresses and voice and fax numbers using sequentially
+numbered map keys (Issue #5)<a href="#section-8.2-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.6">Required the Phone <code>"number"</code> member to be a <code>"tel"</code> URI (RFC 3966)
+          <li class="compact" id="section-8.2-1.6">Required the Phone <code>"number"</code> member to be a <code>"tel"</code> URI (RFC 3966)
 restricted to the Extensible Provisioning Protocol (EPP) telephone number
-format, and added ABNF for it<a href="#section-8.1-1.6" class="pilcrow">¶</a>
+format, and added ABNF for it<a href="#section-8.2-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.7">Added the terms internationalized form and localized form<a href="#section-8.1-1.7" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.7">Added the terms internationalized form and localized form<a href="#section-8.2-1.7" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.8">Permitted the <code>"@type"</code> member on every JSContact object and corrected the
-Organization member to <code>"name"</code><a href="#section-8.1-1.8" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.8">Permitted the <code>"@type"</code> member on every JSContact object and corrected the
+Organization member to <code>"name"</code><a href="#section-8.2-1.8" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.9">Made the Card <code>"kind"</code> member optional<a href="#section-8.1-1.9" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.9">Made the Card <code>"kind"</code> member optional<a href="#section-8.2-1.9" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.10">Converted the profile properties table into a list using the RFC 10050 field
-names<a href="#section-8.1-1.10" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.10">Converted the profile properties table into a list using the RFC 10050 field
+names<a href="#section-8.2-1.10" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.11">Referenced RFC 8605 for the <code>"contact-uri"</code> map key<a href="#section-8.1-1.11" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.11">Referenced RFC 8605 for the <code>"contact-uri"</code> map key<a href="#section-8.2-1.11" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.12">Added the Card <code>"version"</code> member to the profile properties<a href="#section-8.1-1.12" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.12">Added the Card <code>"version"</code> member to the profile properties<a href="#section-8.2-1.12" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-8.1-1.13">Required RPP servers, instead of client validation, to reject a Card
-containing properties outside the profile<a href="#section-8.1-1.13" class="pilcrow">¶</a>
+          <li class="compact" id="section-8.2-1.13">Required RPP servers, instead of client validation, to reject a Card
+containing properties outside the profile<a href="#section-8.2-1.13" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="version-00-to-01">
-<section id="section-8.2">
+<section id="section-8.3">
         <h3 id="name-version-00-to-01">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-version-00-to-01" class="section-name selfRef">Version 00 to 01</a>
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-version-00-to-01" class="section-name selfRef">Version 00 to 01</a>
         </h3>
 <ul class="compact">
-<li class="compact" id="section-8.2-1.1">Fixed duplicate text (Issue #14)<a href="#section-8.2-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-8.3-1.1">Fixed duplicate text (Issue #14)<a href="#section-8.3-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>

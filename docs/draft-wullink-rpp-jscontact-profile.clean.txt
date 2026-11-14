@@ -10,7 +10,7 @@ Expires: 6 May 2027                                                DENIC
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-                 draft-wullink-rpp-jscontact-profile-02
+           draft-wullink-rpp-jscontact-profile-03 (editorial)
 
 Abstract
 
@@ -79,7 +79,8 @@ Table of Contents
    7.  Security Considerations
    8.  Change History
      8.1.  Version 01 to 02
-     8.2.  Version 00 to 01
+     8.2.  Version 01 to 02
+     8.3.  Version 00 to 01
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -488,6 +489,8 @@ Table of Contents
 
 8.1.  Version 01 to 02
 
+8.2.  Version 01 to 02
+
    -  Replaced the reference to draft-ietf-calext-jscontact-profiles
       with RFC 10050
    -  Aligned with draft-ietf-regext-rdap-jscontact-27, making the RPP
@@ -516,7 +519,7 @@ Table of Contents
    -  Required RPP servers, instead of client validation, to reject a
       Card containing properties outside the profile
 
-8.2.  Version 00 to 01
+8.3.  Version 00 to 01
 
    -  Fixed duplicate text (Issue #14)
 
