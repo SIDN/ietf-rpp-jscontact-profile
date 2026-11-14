@@ -137,9 +137,9 @@ Other than the optional `"@type"` member, the EmailAddress type MUST include onl
 
 The Phone type MUST include the `"number"` member and MAY include the
 `"features"` member. If present, the `"features"` member MUST contain only the
-`"voice"` or `"fax"` keys, and the value associated with each key MUST be
-`true`. When the `"features"` member is absent, the phone number is assumed to
-be a voice number.
+`"voice"` or `"fax"` key, MUST not contain more than one key, and the value associated
+with each key MUST be `true`. When the `"features"` member is absent, the phone number
+is assumed to be a voice number.
 
 The `"number"` member value MUST be a `"tel"` URI [@!RFC3966] conforming to
 the `rpp-telephone-uri` rule in (#fig-tel-abnf). This rule restricts the
@@ -188,8 +188,7 @@ A JSContact map key MUST comply with the Id type definition in [@!RFC9553]. RPP 
 
 When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under the predefined map key, while the localized version MUST be placed in the "localizations" map as described in (#localizations).
 
-Keys MUST be of the form `"<predefined key>-<sequential number>"` for any additional entry in the `"emails"` or `"phones"` map, where the sequential number is a decimal integer starting at 1. For example, a `"phones"` map containing three voice numbers contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps.
-
+Keys MUST be of the form `"<predefined key>-<sequential number>"` for any additional entry in the `"emails"` or `"phones"` map, where the sequential number is a decimal integer starting at 1. For example, a `"phones"` map containing three voice numbers contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps. If present, the key in the `"features"` member (see (#phones))MUST match the map key specified here.
 
 ### Localizations {#localizations}
 
@@ -374,7 +373,7 @@ TODO
 RFC Editor: please remove this section before publication.
 
 ## Version 01 to 02
-
+- Changed so that voice/fax map keys always agree with features (Issue #30)
 
 ## Version 01 to 02
 

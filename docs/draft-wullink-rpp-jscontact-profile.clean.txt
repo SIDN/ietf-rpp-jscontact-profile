@@ -215,9 +215,10 @@ Table of Contents
 
    The Phone type MUST include the "number" member and MAY include the
    "features" member.  If present, the "features" member MUST contain
-   only the "voice" or "fax" keys, and the value associated with each
-   key MUST be true.  When the "features" member is absent, the phone
-   number is assumed to be a voice number.
+   only the "voice" or "fax" key, MUST not contain more than one key,
+   and the value associated with each key MUST be true.  When the
+   "features" member is absent, the phone number is assumed to be a
+   voice number.
 
    The "number" member value MUST be a "tel" URI [RFC3966] conforming to
    the rpp-telephone-uri rule in Figure 1.  This rule restricts the
@@ -284,7 +285,9 @@ Table of Contents
    "phones" map containing three voice numbers contains the keys
    "voice", "voice-1", and "voice-2".  An additional key MUST NOT be
    used unless the corresponding predefined key is also present, and the
-   sequential numbers MUST NOT contain gaps.
+   sequential numbers MUST NOT contain gaps.  If present, the key in the
+   "features" member (see Section 4.1.8)MUST match the map key specified
+   here.
 
 4.1.11.  Localizations
 
@@ -488,6 +491,9 @@ Table of Contents
    RFC Editor: please remove this section before publication.
 
 8.1.  Version 01 to 02
+
+   -  Changed so that voice/fax map keys always agree with features
+      (Issue #30)
 
 8.2.  Version 01 to 02
 
