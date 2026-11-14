@@ -10,7 +10,7 @@ Expires: 7 January 2027                                            DENIC
 
 
        JSContact Profile for RESTful Provisioning Protocol (RPP)
-           draft-wullink-rpp-jscontact-profile-01 (editorial)
+           draft-wullink-rpp-jscontact-profile-03 (editorial)
 
 Abstract
 
