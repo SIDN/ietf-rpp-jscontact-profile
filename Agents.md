@@ -149,20 +149,20 @@ turn into interoperable code without guessing.
   with the "…when, and only when, they appear in all capitals" sentence — flag
   this when editing that section.
 - Every normative keyword places a requirement on a **specific actor** for a
-  **specific, testable behaviour** (here: the RPP client, the RPP server, or an
+  **specific, testable behavior** (here: the RPP client, the RPP server, or an
   RPP implementation). Name the actor.
 - Don't stack keywords ("MUST … REQUIRED to …"); pick one. Don't use a keyword
   where plain present tense states a fact.
 - Reserve **SHOULD** for genuine implementer discretion and say what to weigh; if
   there is no legitimate reason to deviate, it is a **MUST**.
-- State **error handling and behaviour on receipt of malformed/unexpected input**
+- State **error handling and behavior on receipt of malformed/unexpected input**
   explicitly (e.g. the validation-error rule in Profile Properties).
 
 Per the **IESG Statement on Clarifying the Use of BCP 14 Key Words**
 (<https://www.ietf.org/about/groups/iesg/statements/clarifying-use-bcp14/>):
 
 - **Use the key words sparingly** — only where required for interoperability or to
-  limit harmful behaviour. They are not for emphasis.
+  limit harmful behavior. They are not for emphasis.
 - A normative statement does **not** need a key word; plain declarative prose is
   equally normative. Prefer the plain form when a key word adds no clarity.
 - **Justify every SHOULD / RECOMMENDED.** Spell out the reasoning and what a
@@ -177,10 +177,10 @@ Per the **IESG Statement on Clarifying the Use of BCP 14 Key Words**
 ### Specify, don't describe
 
 - Write **declarative, present-tense** requirements, not narrative or marketing
-  prose. Define behaviour from the perspective of a **conformance target** (RPP
+  prose. Define behavior from the perspective of a **conformance target** (RPP
   client, RPP server) and name the actor in each requirement.
 - Specify **both sides**: what a generator produces *and* what a parser must
-  accept, including what a receiver does with unrecognised values.
+  accept, including what a receiver does with unrecognized values.
 - Give the **encoding precisely**: member names, allowed enum values, whether a
   member is mandatory/optional, and defaults (e.g. "when absent, the phone number
   is assumed to be a voice number").
@@ -234,7 +234,7 @@ Section-specific rules:
 - **Privacy Considerations** — **strongly relevant** (this profile carries
   personal contact data: names, postal addresses, emails, phone numbers).
   Consider adding a section per RFC 6973 covering what personal data flows where,
-  correlation/fingerprinting risks, and data minimisation.
+  correlation/fingerprinting risks, and data minimization.
 - **References** — split **Normative** / **Informative**, ordered by tag, no
   introductory prose. Citation tags contain no spaces; a textual mention is
   "RFC 2119 [RFC2119]". (mmark generates the References section from citations.)
@@ -244,8 +244,8 @@ Section-specific rules:
 - Neutral and precise; avoid hype and hedging ("simply", "just", "obviously").
 - Distinguish "i.e." (that is) from "e.g." (for example).
 - One requirement per sentence where practical, to enable conformance checklists.
-- Be **consistent** in spelling (American or British) throughout; use the serial
-  (Oxford) comma (IETF default).
+- Use **US English** spelling consistently throughout (policy and exceptions in
+  Pre-Release Review → Check 3); use the serial (Oxford) comma (IETF default).
 - **Capitalization:** title case for the document title and section titles; keep
   term capitalization consistent.
 - **Figures** carry a `Figure:` caption and are referenced by number, not "the
@@ -339,7 +339,7 @@ the line before the next same-or-shallower heading.
 
 Maintain a "Change History" section (currently absent — add one before the next
 revision), with one subsection per draft revision (e.g. "Changes from -00 to -01").
-Add an entry whenever you make a substantive edit, summarising what changed. This
+Add an entry whenever you make a substantive edit, summarizing what changed. This
 is standard IETF practice and helps reviewers track revisions across submissions.
 
 ## Pre-Release Review
@@ -362,7 +362,7 @@ pass, so it is the one case where every section is read — still in
    easy to miss by eye: trailing whitespace, non-ASCII characters, semicolons in
    prose, mixed-case BCP 14 keywords (`MUST not`, `Must`, `MAY not`), citations
    without `@` (`[RFCxxxx]`), cited references vs references defined in the
-   backmatter, `(#anchor)` targets without a matching `{#anchor}`, US spellings,
+   backmatter, `(#anchor)` targets without a matching `{#anchor}`, UK spellings,
    `TODO`/`TBD`/`TBC` notes and HTML comments, and first use of acronyms.
 4. **Cross-check what the script does not.** The IANA script compares elements
    and operations, but also verify by hand: `Extends` values, operation
@@ -437,24 +437,25 @@ entry. Do not touch older revisions' subsections.
 Spell-check the entire document (prose, headings, table cells, figure captions,
 and Changes History). Spelling policy:
 
-- **Prose is UK English** (e.g. "behaviour", "authorisation", "organisation",
-  "standardise", "recognise", "licence" (noun), "catalogue", "centre").
+- **Prose is US English** (e.g. "behavior", "authorization", "organization",
+  "standardize", "recognize", "license" (noun), "catalog", "center"). This
+  matches the draft's existing spelling and the JSContact specifications, whose
+  member and type names (`"localizations"`, Organization) the draft reuses.
 - **Protocol elements and literals stay exactly as defined** — never "correct"
   them: element, object, and operation identifiers, status values, URNs,
   registry field names, and anything inside backticks or fenced code blocks.
 - **Titles and quoted terms of external documents** keep their original
-  spelling: RFC and reference titles, organisation names in reference entries,
-  and established external terms such as "Internationalized Domain Names" or
-  "Unicode Normalization Form C".
-- When prose refers to a concept that is also a literal, the prose word is UK
+  spelling: RFC and reference titles, organization names in reference entries
+  (e.g. "Centre" in a UK organization's name), and established external terms.
+- When prose refers to a concept that is also a literal, the prose word is US
   and the literal is unchanged.
 
 Report typos, grammar slips, UK/US inconsistencies, and inconsistent
-hyphenation/capitalisation of recurring terms (e.g. "nameserver" vs
+hyphenation/capitalization of recurring terms (e.g. "nameserver" vs
 "name server", "lowercase" vs "lower case", "offline review" vs
 "offline-review", "Uniform Interface" vs "Uniform interface", constraint
 placeholders `(None)` vs `None` vs `-`, title case in headings). A tool such as
-`aspell --lang=en_GB` or `hunspell -d en_GB` can be used to generate candidates
+`aspell --lang=en_US` or `hunspell -d en_US` can be used to generate candidates
 if available, but every candidate MUST be checked against the literal/quotation
 exceptions above before it is proposed.
 
