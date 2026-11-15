@@ -136,10 +136,10 @@ Other than the optional `"@type"` member, the EmailAddress type MUST include onl
 ### Phones {#phones}
 
 The Phone type MUST include the `"number"` member and MAY include the
-`"features"` member. If present, the `"features"` member MUST contain only the
-`"voice"` or `"fax"` key, MUST not contain more than one key, and the value associated
-with each key MUST be `true`. When the `"features"` member is absent, the phone number
-is assumed to be a voice number.
+`"features"` member. If present, the `"features"` member MUST contain at most
+one key, either `"voice"` or `"fax"`, and its value MUST be `true`. The
+`"features"` member determines the type of the phone number. When the
+`"features"` member is absent, the phone number is a voice number.
 
 The `"number"` member value MUST be a `"tel"` URI [@!RFC3966] conforming to
 the `rpp-telephone-uri` rule in (#fig-tel-abnf). This rule restricts the
@@ -188,7 +188,9 @@ A JSContact map key MUST comply with the Id type definition in [@!RFC9553]. RPP 
 
 When internationalized and localized versions of an organization, postal address, or email exist, the internationalized version MUST be included under the predefined map key, while the localized version MUST be placed in the "localizations" map as described in (#localizations).
 
-Keys MUST be of the form `"<predefined key>-<sequential number>"` for any additional entry in the `"emails"` or `"phones"` map, where the sequential number is a decimal integer starting at 1. For example, a `"phones"` map containing three voice numbers contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps. If present, the key in the `"features"` member (see (#phones))MUST match the map key specified here.
+Keys MUST be of the form `"<predefined key>-<sequential number>"` for any additional entry in the `"emails"` or `"phones"` map, where the sequential number is a decimal integer starting at 1. For example, a `"phones"` map containing three voice numbers contains the keys `"voice"`, `"voice-1"`, and `"voice-2"`. An additional key MUST NOT be used unless the corresponding predefined key is also present, and the sequential numbers MUST NOT contain gaps. The predefined key of an entry in the `"phones"` map follows from the type of the phone number given by its `"features"` member, as specified in (#phones). An RPP server MUST reject a Phone whose
+`"features"` member and the predefined key of an entry disagree.
+
 
 ### Localizations {#localizations}
 
@@ -372,8 +374,11 @@ TODO
 
 RFC Editor: please remove this section before publication.
 
-## Version 01 to 02
-- Changed so that voice/fax map keys always agree with features (Issue #30)
+## Version 02 to 03
+
+- Required the Phone `"features"` member, if present, to contain exactly one
+  key, and the predefined key of the `"phones"` map entry to match the phone
+  number type given by `"features"` (Issue #30)
 
 ## Version 01 to 02
 
